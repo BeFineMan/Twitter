@@ -32,6 +32,11 @@ public class UserService {
 		return this.userdao.get(userId);
 	}
 	
+	public User getUserByName(String name)
+	{
+		User user=userdao.getUserByUserName(name);
+		return user;
+	}
 	//获取时间戳+3个随机数
 	public String getSystemTime(){
 		String date = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
