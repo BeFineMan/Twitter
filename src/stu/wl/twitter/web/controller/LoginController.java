@@ -20,20 +20,23 @@ public class LoginController {
 
 	@RequestMapping("/doLogin")
 	public ModelAndView login(HttpServletRequest request, User user){
+		System.out.println(user);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("User/UserShow");
 		
-		User LoginUser=userService.getUserByName(user.getUserName());
+		User LoginUser = userService.getUserByName(user.getUserName());
 		
-		if (LoginUser == null||!LoginUser.getPassword().equals(user.getPassword())) {
-			
+		if (LoginUser == null || ! LoginUser.getPassword().equals(user.getPassword())) {
+			mav.addObject("errorMsg","用户名或密码不正确");
+			mav.setViewName("forward:/Login.jsp");
 			//跳转本页面，但是弹出提示 账号密码不对提示注册
-			
-		}else {
-			
-			//跳转到用户页面
-			
 		}
-		
-		return null;
+		/*
+		else {
+			//跳转到用户页面
+		}
+		*/
+		return mav;
 	}
 	
 	public UserService getUserService() {

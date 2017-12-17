@@ -31,7 +31,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="top-login">
 				<span><img src="images/group.png" alt=""/></span>
 			</div>
-			<h1>登录</h1>
+			<h1>登录成功</h1>
 			<div class="login-top">
 			<form>
 				<div class="login-ic">
