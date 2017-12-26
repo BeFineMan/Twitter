@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>乌云后台登录</title>
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+	<link href="style.css" rel="stylesheet" type="text/css" media="all">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="keywords" content="后台登录">
 	<style>
@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div class="login-form">
 			<div class="top-login">
-				<span><img src="images/group.png" alt=""></span>
+				<span><img src="../images/group.png" alt=""></span>
 			</div>
 			<h1>编辑信息</h1>
 			<div class="login-top">

@@ -9,7 +9,7 @@
 <frame src="head.jsp" name="head" scrolling="No" noresize="noresize"/>
 <frameset cols="176px,*" frameborder="no" border="1px" framespacing="0">
 <frame src="left.jsp" scrolling="no" noresize="noresize" name="left"/>
-<frame  src="./mainDefault.html" name="main" />
+<frame  src="mainDefault.jsp" name="main" />
 </frameset>
 </frameset>
 

@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 	</style>
 </head>
-<body>
+<body style="background: url('images/bbb.jpg');">
 
 <div class="login-form">
 			<div class="top-login">
