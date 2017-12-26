@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.jna.platform.win32.WinDef.WORD;
+
 import stu.wl.twitter.dao.UserDao;
 import stu.wl.twitter.domain.User;
 
@@ -21,12 +23,31 @@ public class EditPersonInformationController extends BaseController{
 		User user = userdao.get(super.getSessionUser(request).getUserid());
 
 		ModelAndView mav = new ModelAndView();
+
 		mav.setViewName("User/showInfo");
+		
 		mav.addObject("user", user);
+		
+
+		return mav;
+		
+	}
+	
+	@RequestMapping("/EditInfo")
+	public ModelAndView EditPersonInformation(HttpServletRequest request){
+		User user = userdao.get(super.getSessionUser(request).getUserid());
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("User/personInformation");
+		mav.addObject("user", user);
+		
+		getUserdao().update(user);
 		
 		return mav;
 		
 	}
+	
+	
 	public UserDao getUserdao() {
 		return userdao;
 	}

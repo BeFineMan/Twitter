@@ -21,13 +21,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script>
 	</script>
 </head>
-<body>
+<body style="background: url('images/bbb.jpg');">
 <div class="login-form">
 			<div class="top-login">
 				<span><img src="images/group.png" alt=""></span>
 			</div>
 			<h1>登录</h1>
 			<div class="login-top">
+
 			<form action="/Twitter/login/doLogin.log" method="post">
 				<div class="login-ic">
 					<i></i>
