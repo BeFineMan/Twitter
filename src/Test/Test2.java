@@ -1,15 +1,11 @@
 package Test;
 
-import java.util.Random;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-
-import stu.wl.twitter.domain.BaseInfo;
-import stu.wl.twitter.domain.ConcernInfo;
-import stu.wl.twitter.domain.User;
 
 public class Test2 {
 	public static void main(String args[]){
@@ -19,8 +15,9 @@ public class Test2 {
 		Session session  = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		
-		User user = session.get(User.class, "100");
-		System.out.println(user);
+		String sql = "SELECT userid FROM t_user where userid = '05'";
+		List list = session.createNativeQuery(sql).getResultList();
+		System.out.println(list.isEmpty()?"空":list.get(0));
 		//tx.commit();
 		session.close();
 	}

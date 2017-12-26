@@ -31,9 +31,8 @@ public class RegisterController extends BaseController{
 			this.setSessionUser(request, user);
 		} catch (UserExistException e) {
 			mav.addObject("errorMsg","用户名已存在，请选择其他名字");
-			mav.setViewName("forward:/index.jsp");
+			mav.setViewName("redirect:/Login.jsp");
 		}
-		
 		return mav;
 	}
 	

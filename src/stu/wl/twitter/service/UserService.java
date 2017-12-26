@@ -23,11 +23,9 @@ public class UserService {
 		if(u != null){
 			throw new UserExistException("用户名已存在");
 		}else{
-			String id = null;
 			synchronized (this) {
-				id = this.getSystemTime();
+				user.setUserid(this.getSystemTime());
 			}
-			user.setUserid(id);
 			userdao.save(user);
 		}
 	}

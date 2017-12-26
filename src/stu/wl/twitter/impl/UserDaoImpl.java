@@ -27,4 +27,11 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
 		return (List<User>) super.getHibernateTemplate().find(QUERY_USER_BY_USERNAME, userName);
 	}
 	
+	//查询userid是否存在
+	public Object queryUserId(String userid){
+		String sql = "SELECT userid FROM t_user where userid = '"+userid+"'";
+		List list = super.getSession().createNativeQuery(sql).getResultList();
+		return list.isEmpty() ? null : list.get(0);
+	}
+	
 }
