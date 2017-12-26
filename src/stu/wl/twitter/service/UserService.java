@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,11 @@ public class UserService {
 		if(u != null){
 			throw new UserExistException("用户名已存在");
 		}else{
-			user.setUserid(this.getSystemTime());
+			String id = null;
+			synchronized (this) {
+				id = this.getSystemTime();
+			}
+			user.setUserid(id);
 			userdao.save(user);
 		}
 	}
@@ -32,13 +37,12 @@ public class UserService {
 		return this.userdao.get(userId);
 	}
 	
-	public User getUserByName(String name)
-	{
+	public User getUserByName(String name){
 		User user=userdao.getUserByUserName(name);
 		return user;
 	}
 	//获取时间戳+3个随机数
-	public String getSystemTime(){
+	public static String getSystemTime(){
 		String date = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
 		StringBuffer sbf=new StringBuffer(date);
 		

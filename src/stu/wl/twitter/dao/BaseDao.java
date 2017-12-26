@@ -3,6 +3,8 @@ package stu.wl.twitter.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.Session;
+
 public interface BaseDao<T> {
 	T get(Serializable id);
 	T load(Serializable id);
@@ -13,5 +15,6 @@ public interface BaseDao<T> {
 	void update(T entity);
 	List find(String hql);
 	List find(String hql,Object...params);
+	Session getSession();
 }
  

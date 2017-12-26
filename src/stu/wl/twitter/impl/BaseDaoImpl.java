@@ -27,6 +27,7 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 		entityClass = (Class<T>) params[0];
 	}
 	@Override
+	@Transactional
 	public T get(Serializable id) {
 		return hibernateTemplate.get(entityClass, id);
 	}
@@ -63,6 +64,7 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 	}
 
 	@Override
+	@Transactional
 	public List find(String hql) {
 		return hibernateTemplate.find(hql);
 	}
@@ -81,9 +83,8 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 	}
 	
 	public Session getSession(){
-		Session session=hibernateTemplate.getSessionFactory().getCurrentSession();
+		Session session=hibernateTemplate.getSessionFactory().openSession();
 		return session;
 	}
-	
 	
 }

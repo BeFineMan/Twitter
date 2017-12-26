@@ -10,32 +10,45 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sun.jna.platform.win32.WinDef.WORD;
 
 import stu.wl.twitter.domain.User;
+import stu.wl.twitter.exception.UserExistException;
 import stu.wl.twitter.service.UserService;
 
 @Controller
 @RequestMapping("/login")
-public class LoginController {
+public class LoginController extends BaseController{
 	@Autowired
 	private UserService userService;
 
+	//登陆
 	@RequestMapping("/doLogin")
 	public ModelAndView login(HttpServletRequest request, User user){
-		System.out.println(user);
+		System.out.println("请求路径:"+request.getContextPath());
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("User/UserShow");
 		
 		User LoginUser = userService.getUserByName(user.getUserName());
 		
 		if (LoginUser == null || ! LoginUser.getPassword().equals(user.getPassword())) {
+			//跳转本页面，但是弹出提示 账号密码不对提示注册
 			mav.addObject("errorMsg","用户名或密码不正确");
 			mav.setViewName("forward:/Login.jsp");
-			//跳转本页面，但是弹出提示 账号密码不对提示注册
+		}else{
+			//登陆成功
+			mav.setViewName("User/UserShow");
+			super.setSessionUser(request, LoginUser);
 		}
-		/*
-		else {
-			//跳转到用户页面
+		return mav;
+	}
+	
+	//注册
+	@RequestMapping("/register")
+	public ModelAndView register(User user){
+		ModelAndView mav = new ModelAndView();
+		try {
+			userService.register(user);
+		} catch (UserExistException e) {
+			mav.setViewName("forward:/register.html");
+			return mav;
 		}
-		*/
 		return mav;
 	}
 	

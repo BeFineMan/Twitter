@@ -26,32 +26,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 --><!--Google Fonts-->
 </head>
 <body>
-<!--header start here-->
-<div class="login-form">
-			<div class="top-login">
-				<span><img src="images/group.png" alt=""/></span>
-			</div>
-			<h1>登录成功</h1>
-			<div class="login-top">
-			<form>
-				<div class="login-ic">
-					<i ></i>
-					<input type="text"  value="用户" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'User name';}"/>
-					<div class="clear"> </div>
-				</div>
-				<div class="login-ic">
-					<i class="icon"></i>
-					<input type="password"  value="密码" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'password';}"/>
-					<div class="clear"> </div>
-				</div>
-			
-				<div class="log-bwn">
-					<input type="submit"  value="Login" >
-				</div>
-				</form>
-			</div>
-			<p class="copy">© 2016 xxxxxxxxxxx</p>
-</div>		
-<!--header start here-->
+	登陆成功-----><a href="/Twitter/edit/person.log">查看/编辑</a>个人信息
 </body>
 </html>

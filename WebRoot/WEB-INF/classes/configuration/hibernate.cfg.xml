@@ -39,5 +39,11 @@
 
 	<!-- 注册映射文件 -->
 	<mapping class="stu.wl.twitter.domain.User"></mapping>
+	<mapping class="stu.wl.twitter.domain.Discuss"></mapping>
+	<mapping class="stu.wl.twitter.domain.Dynamic"></mapping>
+	<mapping class="stu.wl.twitter.domain.PublishUser"></mapping>
+	<mapping class="stu.wl.twitter.domain.ReplierUser"></mapping>
+	<mapping class="stu.wl.twitter.domain.BaseInfo"></mapping>
+	<mapping class="stu.wl.twitter.domain.ConcernInfo"></mapping>
 </session-factory>
 </hibernate-configuration>
