@@ -39,19 +39,6 @@ public class LoginController extends BaseController{
 		return mav;
 	}
 	
-	//注册
-	@RequestMapping("/register")
-	public ModelAndView register(User user){
-		ModelAndView mav = new ModelAndView();
-		try {
-			userService.register(user);
-		} catch (UserExistException e) {
-			mav.setViewName("forward:/register.html");
-			return mav;
-		}
-		return mav;
-	}
-	
 	public UserService getUserService() {
 		return userService;
 	}
