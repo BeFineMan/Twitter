@@ -33,15 +33,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input type="text" value="用户" name="userName" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;User name&#39;;}">
 					<div class="clear"> </div>
 				</div>
+				
 				<div class="login-ic">
 					<i class="icon"></i>
 					<input type="password" value="密码" name="password" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;password&#39;;}">
 					<div class="clear"> </div>
 				</div>
-			
+				
 				<div class="log-bwn">
-					<input type="submit" value="Login">
+					<input type="submit" value="登录">
 				</div>
+					
+				<div class="log-bwn">
+					<input type="submit" value="注册">
+				</div>
+				
+				
 				</form>
 			</div>
 			${errorMsg}
