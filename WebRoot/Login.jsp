@@ -18,9 +18,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')
 			}
 	</style>
+	<script>
+	</script>
 </head>
 <body>
-
 <div class="login-form">
 			<div class="top-login">
 				<span><img src="images/group.png" alt=""></span>
