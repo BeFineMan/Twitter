@@ -27,4 +27,8 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
 		return (List<User>) super.getHibernateTemplate().find(QUERY_USER_BY_USERNAME, userName);
 	}
 	
+	public List asdas(){
+		return null;
+	}
+	
 }
