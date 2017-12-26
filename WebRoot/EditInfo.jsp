@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="top-login">
 				<span><img src="images/group.png" alt=""></span>
 			</div>
-			<h1>登录</h1>
+			<h1>编辑信息</h1>
 			<div class="login-top">
 			<form action="/Twitter/login/doLogin.log">
 				<div class="login-ic">
@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				<div class="login-ic">
 					<i></i>
-					<input type="text" value="性别" name="userName" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;User name&#39;;}">
+					<input type="text" value="性别" name="sex" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;性 别&#39;;}">
 					<div class="clear"> </div>
 				</div>
 				
@@ -50,13 +50,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				<div class="login-ic">
 					<i></i>
-					<input type="text" value="生日" name="userName" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;User name&#39;;}">
+					<input type="text" value="生日" name="birthday" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;生 日&#39;;}">
 					<div class="clear"> </div>
 				</div>
 				
 				<div class="login-ic">
 					<i></i>
-					<input type="text" value="简介" name="userName" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;User name&#39;;}">
+					<input type="text" value="简介" name="shortInfo" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;简 介&#39;;}">
 					<div class="clear"> </div>
 				</div>
 				
