@@ -21,10 +21,9 @@ public class EditPersonInformationController extends BaseController{
 		User user = userdao.get(super.getSessionUser(request).getUserid());
 
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("User/personInformation");
+		mav.setViewName("User/showInfo");
 		mav.addObject("user", user);
 		
-		System.out.println(user);
 		return mav;
 		
 	}

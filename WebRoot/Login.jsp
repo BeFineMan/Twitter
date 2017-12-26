@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<h1>登录</h1>
 			<div class="login-top">
-			<form action="/Twitter/login/doLogin.log">
+			<form action="/Twitter/login/doLogin.log" method="post">
 				<div class="login-ic">
 					<i></i>
 					<input type="text" value="用户" name="userName" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;User name&#39;;}">
