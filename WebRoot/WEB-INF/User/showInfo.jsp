@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>乌云后台登录</title>
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+	<link href="/Twitter/css/style.css" rel="stylesheet" type="text/css" media="all">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="keywords" content="后台登录">
 	<style>
@@ -23,26 +23,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div class="login-form">
 			<div class="top-login">
-				<span><img src="images/group.png" alt=""></span>
+				<span><img src="/Twitter/images/group.png" alt=""></span>
 			</div>
 			<h1>编辑信息</h1>
 			<div class="login-top">
-			<form action="/Twitter/login/doLogin.log">
+			<form action="/Twitter/edit/person.log">
 				<div class="login-ic">
 					<i></i>
-					<input type="text" value="昵称" name="userName" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;User name&#39;;}">
+					<input type="text" value="${user.baseInfo.nickName}" name="userName" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;User name&#39;;}">
 					<div class="clear"> </div>
 				</div>
 				
 				<div class="login-ic">
 					<i class="icon"></i>
-					<input type="password" value="真实姓名" name="password" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;password&#39;;}">
+					<input type="text" value="${user.baseInfo.realName}" name="password" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;password&#39;;}">
 					<div class="clear"> </div>
 				</div>
 				
 				<div class="login-ic">
 					<i></i>
-					<input type="text" value="性别" name="sex" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;性 别&#39;;}">
+					<input type="text" value="${user.baseInfo.sex}" name="sex" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;性 别&#39;;}">
 					<div class="clear"> </div>
 				</div>
 				
@@ -50,25 +50,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				<div class="login-ic">
 					<i></i>
-					<input type="text" value="生日" name="birthday" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;生 日&#39;;}">
+					<input type="text" value="${user.baseInfo.birthday}" name="birthday" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;生 日&#39;;}">
 					<div class="clear"> </div>
 				</div>
 				
 				<div class="login-ic">
 					<i></i>
-					<input type="text" value="简介" name="shortInfo" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;简 介&#39;;}">
+					<input type="text" value="${user.baseInfo.simpleinfo}" name="shortInfo" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;简 介&#39;;}">
 					<div class="clear"> </div>
 				</div>
 				
 				
 				<div class="log-bwn">
-					<input type="submit" value="登录">
+					<input type="submit" value="编辑">
 				</div>
 				
 				</form>
 			</div>
 			${errorMsg}
-			<p class="copy">weibo</p>
+			<p class="copy">个人信息${a}</p>
 </div>		
 
 </body></html>
