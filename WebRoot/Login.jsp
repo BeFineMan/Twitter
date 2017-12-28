@@ -34,7 +34,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var url = "/Twitter/register/res.log";
 			var formObject = document.createElement('form');
 			document.body.appendChild(formObject);
-			window.location.href=
+			formObject.action = url;
+			formObject.setAttribute("method","post");
+			formObject.submit();
 		}
 	</script>
 </head>
