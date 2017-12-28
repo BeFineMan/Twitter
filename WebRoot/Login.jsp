@@ -18,7 +18,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')
 			}
 	</style>
-	<script>
+	<script type="text/javascript">
+		var errorMsg = "<%=session.getAttribute("errorMsg")%>";	
+		<%session.removeAttribute("errorMsg");%>
+		if(!(errorMsg==null || ""==errorMsg || errorMsg == "null")){
+			alert(errorMsg);
+		}
 	</script>
 </head>
 <body style="background: url('images/bbb.jpg');">
@@ -53,8 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				</form>
 			</div>
-			${errorMsg}
-			<p class="copy">weibo</p>
+			<p class="copy">WeiBo</p>
 </div>		
 
 </body></html>

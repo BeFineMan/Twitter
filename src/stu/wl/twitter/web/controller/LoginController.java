@@ -29,7 +29,7 @@ public class LoginController extends BaseController{
 		
 		if (LoginUser == null || ! LoginUser.getPassword().equals(user.getPassword())) {
 			//跳转本页面，但是弹出提示 账号密码不对提示注册
-			mav.addObject("errorMsg","NoBody");
+			request.getSession().setAttribute("errorMsg", "用户名或密码不正确");
 			mav.setViewName("redirect:/Login.jsp");
 		}else{
 			//登陆成功
