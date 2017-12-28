@@ -22,20 +22,34 @@ public class LoginController extends BaseController{
 	//登陆
 	@RequestMapping("/doLogin")
 	public ModelAndView login(HttpServletRequest request, User user){
-		System.out.println("请求路径:"+request.getContextPath());
 		ModelAndView mav = new ModelAndView();
+
+		//如果用户已经登陆过，则直接跳转
+		Object sessionUser = request.getSession().getAttribute("USER_CONTEXT");
+		if(!(sessionUser == null || "".equals(sessionUser))){
+			mav.setViewName("User/UserShow");
+			return mav;
+		}
 		
 		User LoginUser = userService.getUserByName(user.getUserName());
-		
 		if (LoginUser == null || ! LoginUser.getPassword().equals(user.getPassword())) {
 			//跳转本页面，但是弹出提示 账号密码不对提示注册
-			mav.addObject("errorMsg","NoBody");
+			request.getSession().setAttribute("errorMsg", "用户名或密码不正确");
 			mav.setViewName("redirect:/Login.jsp");
 		}else{
-			//登陆成功
+			//用户名和密码匹配，登陆成功
 			mav.setViewName("User/UserShow");
 			super.setSessionUser(request, LoginUser);
 		}
+		return mav;
+	}
+	
+	//注销
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpServletRequest request){
+		ModelAndView mav = new ModelAndView();
+		super.removeSessionUser(request);
+		mav.setViewName("redirect:/Login.jsp");
 		return mav;
 	}
 	

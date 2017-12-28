@@ -10,6 +10,11 @@ import org.hibernate.cfg.Configuration;
 
 public class Test2 {
 	public static void main(String args[]){
+		String str = "/Twitter/edit/json.log?test='测试一个值' && aa= 'asd'".trim();
+		int whindex = str.indexOf('?');
+		
+		String param = str.substring(whindex+1);
+		System.out.println(param);
 		
 		/*Configuration cfg= new Configuration().configure("configuration/hibernate.cfg.xml");
 		SessionFactory sessionFactory = cfg.buildSessionFactory();
