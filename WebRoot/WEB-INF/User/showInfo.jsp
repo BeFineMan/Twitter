@@ -65,8 +65,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="clear"> </div>
 				</div>
 				
-				
-				
 				<div class="login-ic">
 					<i></i>
 					<input type="text" value="${user.baseInfo.birthday}" name="birthday" disabled onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;生 日&#39;;}">

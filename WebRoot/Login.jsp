@@ -30,14 +30,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			alert(errorMsg);
 		}
 		
+		function check(){
+			var userName = document.getElementById("userName").toString().trim();
+			var password = document.getElementById("password").toString().trim();
+			if(userName ==""){
+				alert("请输入正确的用户名");
+			}
+			if(password ==""){
+				alert("请输入密码");
+			}
+			if(password =="")
+		}
+		
 		function register(){
 			var url = "/Twitter/register/res.log";
 			var formObject = document.createElement('form');
 			document.body.appendChild(formObject);
 			formObject.action = url;
 			formObject.setAttribute("method","post");
+			
 			formObject.submit();
-		}
+		};
 	</script>
 </head>
 <body style="background: url('images/bbb.jpg');">
@@ -48,16 +61,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<h1>登录</h1>
 			<div class="login-top">
 
-			<form action="/Twitter/login/doLogin.log" method="post">
+			<form id="login_form" action="/Twitter/login/doLogin.log" method="post">
 				<div class="login-ic">
 					<i></i>
-					<input type="text" value="用户" name="userName" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;User name&#39;;}">
+					<input id="userName" type="text" value="用户" name="userName" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;User name&#39;;}">
 					<div class="clear"> </div>
 				</div>
 				
 				<div class="login-ic">
 					<i class="icon"></i>
-					<input type="password" value="密码" name="password" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;password&#39;;}">
+					<input id="password" type="password" value="密码" name="password" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;password&#39;;}">
 					<div class="clear"> </div>
 				</div>
 				
