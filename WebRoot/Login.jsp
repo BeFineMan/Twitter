@@ -19,10 +19,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 	</style>
 	<script type="text/javascript">
+		var user = "<%=session.getAttribute("USER_CONTEXT")%>";
+		if(!(user == null || user == "null" || ""==user)){
+			alert("登陆成功");
+			window.location.href = "/Twitter/login/doLogin.log";
+		}
 		var errorMsg = "<%=session.getAttribute("errorMsg")%>";	
 		<%session.removeAttribute("errorMsg");%>
 		if(!(errorMsg==null || ""==errorMsg || errorMsg == "null")){
 			alert(errorMsg);
+		}
+		
+		function register(){
+			window.location.href="/Twitter/register/res.log";
 		}
 	</script>
 </head>
@@ -52,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 					
 				<div class="log-bwn">
-					<input type="submit" value="注册">
+					<input type="button" value="注册" onclick="register()">
 				</div>
 				
 				

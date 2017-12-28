@@ -30,7 +30,7 @@ public class EditPersonInformationController extends BaseController{	//编辑个
 	private UserDao userdao;
 	
 	//显示个人信息
-	@RequestMapping(value = "/person",method = RequestMethod.POST)
+	@RequestMapping(value = "/person")
 	public ModelAndView ShowPersonInformation(HttpServletRequest request){
 		User user = userdao.get(super.getSessionUser(request).getUserid());
 
@@ -38,12 +38,11 @@ public class EditPersonInformationController extends BaseController{	//编辑个
 		mav.setViewName("User/showInfo");
 		
 		mav.addObject("user", user);
-		request.setAttribute("a", "abcd");
-
 		return mav;
 		
 	}
 	
+	//测试
 	@RequestMapping(value = "/test")
 	public ModelAndView test(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attr){
 		ModelAndView mav = new ModelAndView();
@@ -53,6 +52,7 @@ public class EditPersonInformationController extends BaseController{	//编辑个
 		return mav;
 	}
 	
+	//编辑个人信息
 	@RequestMapping("/EditInfo")
 	public ModelAndView EditPersonInformation(HttpServletRequest request,User users){
 		User user = userdao.get(super.getSessionUser(request).getUserid());
