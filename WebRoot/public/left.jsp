@@ -98,11 +98,11 @@ div.style.display=(div.style.display=='none'?'block':'none');
 
 <div id="style212">
 <ul>
-<li><a href="${pageContext.request.contextPath}/student/tableServlet?" target="main">本学期课表</a></li>
-<li><a href="${pageContext.request.contextPath }/student/rubLessonServlet?method=listAll" target="main">蹭课</a></li>
-<li><a href="${pageContext.request.contextPath }/student/chooseCourseServlet?method=getUI" target="main">选课管理</a></li>
-<li><a href="${pageContext.request.contextPath }/student/findClassRom.jsp" target="main">找空教室</a>
-<li><a href="${pageContext.request.contextPath }/student/queryScoreServlet?method=getAllCourse" target="main">本学期成绩</a></li>
+<li><a href="${pageContext.request.contextPath}/student/tableServlet?" target="main">好友圈</a></li>
+<li><a href="${pageContext.request.contextPath }/student/rubLessonServlet?method=listAll" target="main">特别关注</a></li>
+<li><a href="${pageContext.request.contextPath }/student/chooseCourseServlet?method=getUI" target="main">粉丝</a></li>
+<li><a href="${pageContext.request.contextPath }/student/findClassRom.jsp" target="main">A分组</a>
+<li><a href="${pageContext.request.contextPath }/student/queryScoreServlet?method=getAllCourse" target="main">B分组</a></li>
 </ul>
 </div>
 </div> 
