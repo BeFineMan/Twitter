@@ -22,6 +22,7 @@ public class LoginController extends BaseController{
 	//登陆
 	@RequestMapping("/doLogin")
 	public ModelAndView login(HttpServletRequest request, User user){
+		
 		ModelAndView mav = new ModelAndView();
 
 		//如果用户已经登陆过，则直接跳转

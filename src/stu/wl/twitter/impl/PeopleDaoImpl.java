@@ -2,10 +2,9 @@ package stu.wl.twitter.impl;
 
 import org.springframework.stereotype.Repository;
 
-import Test.Score;
-import stu.wl.twitter.domain.Discuss;
+import stu.wl.twitter.domain.BaseInfo;
 
 @Repository("peopleDao")
-public class PeopleDaoImpl extends BaseDaoImpl<Discuss>{
+public class PeopleDaoImpl extends BaseDaoImpl<BaseInfo>{
 
 }

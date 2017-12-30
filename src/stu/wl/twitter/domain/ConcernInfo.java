@@ -11,7 +11,7 @@ import org.hibernate.annotations.Parameter;
 
 @Entity
 @Table(name = "t_concernInfo")
-public class ConcernInfo {	//联系信息
+public class ConcernInfo extends User{	//联系信息
 	@Id
 	private String userid;
 	private String email;
