@@ -12,7 +12,7 @@ import org.hibernate.annotations.Parameter;
 
 @Entity
 @Table(name = "t_baseinfo")
-public class BaseInfo {		//基本信息
+public class BaseInfo{		//基本信息
 	@Id
 	private String userid;
 	private String nickName;	//昵称

@@ -2,6 +2,7 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+request.setCharacterEncoding("UTF-8");
 %>
 
 <!DOCTYPE html>
@@ -18,40 +19,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')
 			}
 	</style>
-	<script type="text/javascript">
-		var user = "<%=session.getAttribute("USER_CONTEXT")%>";
-		if(!(user == null || user == "null" || ""==user)){
-			alert("登陆成功");
-			window.location.href = "/Twitter/login/doLogin.log";
-		}
-		var errorMsg = "<%=session.getAttribute("errorMsg")%>";	
-		<%session.removeAttribute("errorMsg");%>
-		if(!(errorMsg==null || ""==errorMsg || errorMsg == "null")){
-			alert(errorMsg);
-		}
-		
-		function check(){
-			var userName = document.getElementById("userName").toString().trim();
-			var password = document.getElementById("password").toString().trim();
-			if(userName ==""){
-				alert("请输入正确的用户名");
-			}
-			if(password ==""){
-				alert("请输入密码");
-			}
-			if(password =="")
-		}
-		
-		function register(){
-			var url = "/Twitter/register/res.log";
-			var formObject = document.createElement('form');
-			document.body.appendChild(formObject);
-			formObject.action = url;
-			formObject.setAttribute("method","post");
-			
-			formObject.submit();
-		};
-	</script>
 </head>
 <body style="background: url('images/bbb.jpg');">
 <div class="login-form">
@@ -88,4 +55,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<p class="copy">WeiBo</p>
 </div>		
 
-</body></html>
+</body>
+	<script type="text/javascript">
+		//判断用户是否登陆
+		var user = "<%=session.getAttribute("USER_CONTEXT")%>";
+		if(!(user == null || user == "null" || ""==user)){
+			alert("登陆成功");
+			window.location.href = "/Twitter/login/doLogin.log";
+		}
+		
+		//检测错误信息errorMsg
+		var errorMsg = "<%=session.getAttribute("errorMsg")%>";	
+		if(!(errorMsg == null || ""==errorMsg || errorMsg == "null")){
+			<%session.removeAttribute("errorMsg");%>
+			alert(errorMsg);
+		}
+		
+		//检测错误信息checkError
+		var checkError = "<%=session.getAttribute("checkError")%>";
+		if(!(checkError == null || "" ==checkError || checkError =="null")){
+			<%session.removeAttribute("checkError");%>
+			alert(checkError);
+		}
+		
+		//注册成功信息
+		var registerSuccess = "<%=session.getAttribute("regsiterSuccess")%>";
+		if(!(registerSuccess == null || "" ==registerSuccess || registerSuccess =="null")){
+			<%session.removeAttribute("regsiterSuccess");%>
+			alert(registerSuccess);
+		}
+		
+		//注册
+		function register(){
+			var formObject = document.getElementById("login_form");
+			formObject.action = "/Twitter/register/res.log";			//定义URL
+			formObject.submit();				//执行表单提交
+		}
+		
+	</script>
+</html>

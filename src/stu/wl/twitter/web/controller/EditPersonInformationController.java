@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Enumeration;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,17 +54,21 @@ public class EditPersonInformationController extends BaseController{	//编辑个
 		return mav;
 	}
 	
-	//编辑个人信息
-	@RequestMapping("/EditInfo")
-	public ModelAndView EditPersonInformation(HttpServletRequest request,User users){
-		User user = userdao.get(super.getSessionUser(request).getUserid());
+	//更新个人信息
+	@RequestMapping("/updateUserInfo")
+	public ModelAndView updatePersonInformation(HttpServletRequest request){
+		Enumeration<String> params = request.getParameterNames();
+		while(params.hasMoreElements()){
+			String param = params.nextElement();
+			System.out.println("参数名："+param+"参数值:"+request.getParameter(param));
+		}
+		//User user = userdao.get(super.getSessionUser(request).getUserid());
 
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("User/personInformation");
-		mav.addObject("user", user);
+		mav.setViewName("User/showInfo");	
+		//mav.addObject("user", user);
 		
-		getUserdao().update(user);
-		
+		//getUserdao().update(user);
 		return mav;
 		
 	}

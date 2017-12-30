@@ -59,6 +59,7 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 	}
 
 	@Override
+	@Transactional
 	public void update(T entity) {
 		hibernateTemplate.update(entity);
 	}

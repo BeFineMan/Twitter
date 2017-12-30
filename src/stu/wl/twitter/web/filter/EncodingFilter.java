@@ -8,12 +8,14 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 /*
  * 编码过滤
  * */
 public class EncodingFilter implements Filter{
 	private String encoding;
+	private static int i=0;
 
 	@Override
 	public void destroy() {
@@ -24,7 +26,6 @@ public class EncodingFilter implements Filter{
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("编码过滤");
 		request.setCharacterEncoding(encoding);
 		response.setCharacterEncoding(encoding);
 		chain.doFilter(request, response);
@@ -32,8 +33,8 @@ public class EncodingFilter implements Filter{
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
-		
+		this.encoding = filterConfig.getInitParameter("encoding");
+		System.out.println("初始化过滤器");
 	}
 	
 }
