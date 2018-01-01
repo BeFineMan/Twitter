@@ -17,6 +17,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			font-family:uc-nexus-iconfont;
 			src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')
 			}
+		.divTab{
+		float: right;
+		}
 	</style>
 </head>
 
@@ -37,30 +40,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<i></i>
 					<input type="text"  value="${user.baseInfo.nickName}" id="nickName" name="nickName" disabled  onfocus="changeFlag();this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;昵称&#39;;}">
 					<div class="clear"> </div>
+				<div class=".divTab">昵称</div>
 				</div>
 				
 				<div class="login-ic">
 					<i class="icon"></i>
 					<input type="text" value="${user.baseInfo.realName}" id="realName" name="realName" disabled onfocus="changeFlag();this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;真实姓名&#39;;}">
 					<div class="clear"> </div>
+					<div class=".divTab">密码</div>
 				</div>
 				
 				<div class="login-ic">
 					<i></i>
 					<input type="text" value="${user.baseInfo.sex}" name="sex" id="sex" disabled onfocus="changeFlag();this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;性 别&#39;;}">
 					<div class="clear"> </div>
+					<div class=".divTab">性别</div>
 				</div>
 				
 				<div class="login-ic">
 					<i></i>
 					<input type="text" value="${user.baseInfo.birthday}" id="birthday" name="birthday" disabled onfocus="changeFlag();this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;生 日&#39;;}">
 					<div class="clear"> </div>
+					<div class=".divTab">生日</div>
 				</div>
 				
 				<div class="login-ic">
 					<i></i>
 					<input type="text" value="${user.baseInfo.simpleinfo}" id="simpleinfo" name="simpleinfo" disabled onfocus="changeFlag();this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;简 介&#39;;}">
 					<div class="clear"> </div>
+					<div class=".divTab">简介</div>
 				</div>
 				
 				
