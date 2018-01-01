@@ -14,8 +14,8 @@ import org.hibernate.annotations.Parameter;
 public class ConcernInfo extends User{	//联系信息
 	@Id
 	private String userid;
-	private String email;
-	private String qq;
+	private String email;	//email
+	private String qq;		//qq
 	public String getUserid() {
 		return userid;
 	}

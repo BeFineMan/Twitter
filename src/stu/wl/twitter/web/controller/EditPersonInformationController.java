@@ -1,13 +1,9 @@
 package stu.wl.twitter.web.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,15 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import stu.wl.twitter.dao.UserDao;
+import stu.wl.twitter.domain.BaseInfo;
 import stu.wl.twitter.domain.User;
+import stu.wl.twitter.exception.UserExistException;
 
 @Controller
 @RequestMapping("/edit")
@@ -56,19 +50,63 @@ public class EditPersonInformationController extends BaseController{	//编辑个
 	
 	//更新个人信息
 	@RequestMapping("/updateUserInfo")
-	public ModelAndView updatePersonInformation(HttpServletRequest request){
+	public ModelAndView updatePersonInformation(HttpServletRequest request)throws UserExistException{
+		ModelAndView mav = new ModelAndView();
+
+		User user = userdao.get(super.getSessionUser(request).getUserid()); 
+		
+		//获取基本信息属性
+		BaseInfo baseInfo = user.getBaseInfo();
+		if(baseInfo == null){
+			baseInfo = new BaseInfo();
+			baseInfo.setUserid(user.getUserid());
+			user.setBaseInfo(baseInfo);
+		}
+		
+		/*
+		 * 将传来的参数赋值进基本信息里
+		 * 这样做不妥，目的只是为了回顾java动态反射等，可以直接静态赋值，简单粗暴
+		 */
 		Enumeration<String> params = request.getParameterNames();
+		StringBuffer sbf = null;
 		while(params.hasMoreElements()){
 			String param = params.nextElement();
-			System.out.println("参数名："+param+"参数值:"+request.getParameter(param));
-		}
-		//User user = userdao.get(super.getSessionUser(request).getUserid());
+			sbf = new StringBuffer("set"+param);
+			sbf.replace(3, 4, sbf.substring(3, 4).toUpperCase());
+			
+			Method method = null;
 
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("User/showInfo");	
-		//mav.addObject("user", user);
+			try{
+				switch(param){
+					case "birthday":{
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-DD-mm");
+						Date date = sdf.parse(request.getParameter(param));
+						method = baseInfo.getClass().getMethod(sbf.toString(),Date.class);
+						method.invoke(baseInfo,date);
+						break;
+					}
+					case "sex":{
+						char sex = request.getParameter(param).charAt(0);
+						method = baseInfo.getClass().getMethod(sbf.toString(),char.class);
+						method.invoke(baseInfo,sex);
+						break;
+					}
+					default:{
+						method = baseInfo.getClass().getMethod(sbf.toString(),String.class);
+						method.invoke(baseInfo,request.getParameter(param));
+					}
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+				throw new UserExistException("678");
+			}
+		}
 		
-		//getUserdao().update(user);
+		userdao.update(user);
+		
+		mav.setViewName("User/showInfo");	
+		mav.addObject("user", user);
+		
 		return mav;
 		
 	}

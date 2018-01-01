@@ -14,6 +14,8 @@ import org.hibernate.annotations.Parameter;
 @Table(name = "t_baseinfo")
 public class BaseInfo{		//基本信息
 	@Id
+/*	@GeneratedValue(generator = "aa")
+	@GenericGenerator(name = "aa", strategy = "assigned")*/
 	private String userid;
 	private String nickName;	//昵称
 	private String realName;	//真实姓名

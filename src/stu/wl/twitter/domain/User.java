@@ -30,6 +30,7 @@ public class User implements Serializable{
 	private String userid;		//用户id
 	private String userName;	//用户名
 	private String password;	//密码
+	private String icon; 	//头像
 	
 	@OneToOne(targetEntity = BaseInfo.class,cascade = CascadeType.ALL)
 	@JoinColumn(name = "baseInfo_id")
@@ -72,7 +73,6 @@ public class User implements Serializable{
 	public void setDynamics(List<Dynamic> dynamics) {
 		this.dynamics = dynamics;
 	}
-	@Transactional
 	public List<Discuss> getDiscusses() {
 		return discusses;
 	}
@@ -90,6 +90,12 @@ public class User implements Serializable{
 	}
 	public void setConcernInfo(ConcernInfo concernInfo) {
 		this.concernInfo = concernInfo;
+	}
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 	@Override
 	public String toString() {

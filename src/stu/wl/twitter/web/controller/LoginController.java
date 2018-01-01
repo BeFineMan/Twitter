@@ -28,7 +28,7 @@ public class LoginController extends BaseController{
 		//如果用户已经登陆过，则直接跳转
 		Object sessionUser = request.getSession().getAttribute("USER_CONTEXT");
 		if(!(sessionUser == null || "".equals(sessionUser))){
-			mav.setViewName("User/UserShow");
+			mav.setViewName("forward:/user/home.log");
 			return mav;
 		}
 		
@@ -39,7 +39,7 @@ public class LoginController extends BaseController{
 			mav.setViewName("redirect:/Login.jsp");
 		}else{
 			//用户名和密码匹配，登陆成功
-			mav.setViewName("User/UserShow");
+			mav.setViewName("forward:/user/home.log");
 			super.setSessionUser(request, LoginUser);
 		}
 		return mav;
@@ -53,6 +53,7 @@ public class LoginController extends BaseController{
 		mav.setViewName("redirect:/Login.jsp");
 		return mav;
 	}
+	
 	
 	public UserService getUserService() {
 		return userService;

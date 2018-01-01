@@ -14,18 +14,18 @@ public class Test {
 		SessionFactory sessionFactory = cfg.buildSessionFactory();
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();*/
-		
+		System.out.println("11");
 		ApplicationContext con = new ClassPathXmlApplicationContext("configuration/applicationContext.xml");
 		UserDao userdao = (UserDao) con.getBean("userDao");
 		PeopleDaoImpl peopledao = (PeopleDaoImpl) con.getBean("peopleDao");
 		
-		User user = new User();
+		//User user = new User();
 		BaseInfo base = new BaseInfo();
-		base.setUserid("dddddd");
-		user.setBaseInfo(base);
-		user.setUserid("dddd");
+		base.setUserid("1q111qq12123q");
 		peopledao.save(base);
-		userdao.save(user);
+		/*user.setBaseInfo(base);
+		user.setUserid("qqqqqq");
+		userdao.save(user);*/
 		
 	}
 }
