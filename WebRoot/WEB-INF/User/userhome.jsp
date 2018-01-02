@@ -4,27 +4,17 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-
-<!--Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-
+<!DOCTYPE html>
 <html>
 <head>
-<title>乌云后台登录</title>
-<!-- Custom Theme files -->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
-<!-- Custom Theme files -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-<meta name="keywords" content="后台登录" />
-	<link rel="stylesheet" href="/Twitter/css/userhome.css" type="text/css">
-</head> 
+	<meta http-equiv="Content+-Type" content="text/html; charset=UTF-8">
+	<title>乌云后台登录</title>
+	<link href="/Twitter/css/userhome.css" rel="stylesheet" type="text/css" media="all">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="keywords" content="后台登录">
+</head>  
 
-<body>
+<body> 
 	<div id="topnav">
 		<jsp:include page="/public/topnav.jsp"/> 
 	</div>
@@ -61,11 +51,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</tr>
 		</table>
 	</form>
-	
+	 
 	<!-- 圆框头像 -->
-	<div style="width: 74px; height: 74px; float:left; border-radius: 50%; border: 3px solid #eee; overflow: hidden;">
-	  <img width="80" height="80" src="/Twitter/userIcon/Scorpio.png"/>
-	</div> 
+	<div id="userinfo">
+		<div id="radiu_icon">
+	  		<img  width="60" height="60" src="/Twitter/userIcon/Scorpio.png"/>
+		</div>  
+	</div>
+	
 </body>
 </html>
 

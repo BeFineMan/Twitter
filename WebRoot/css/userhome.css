@@ -1,1 +1,19 @@
 @CHARSET "UTF-8";
+body {
+	background-color:black; 
+}
+#user_info{
+	width:230px;
+	height:100px;
+	background-color:black;
+}
+#radiu_icon{
+	width: 60px; 
+	height: 60px; 
+	float:left; 
+	border-radius: 50%;
+	margin:50px; 
+	border: 3px solid #eee; 
+	overflow: hidden;
+	background-color:green; 
+} 

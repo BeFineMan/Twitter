@@ -7,9 +7,12 @@ import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -24,34 +27,31 @@ import stu.wl.twitter.exception.UserExistException;
 public class EditPersonInformationController extends BaseController{	//编辑个人信息
 	@Autowired
 	private UserDao userdao;
+	private ModelAndView mav;
 	
 	//显示个人信息
 	@RequestMapping(value = "/person")
 	public ModelAndView ShowPersonInformation(HttpServletRequest request){
-		User user = userdao.get(super.getSessionUser(request).getUserid());
-
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("User/showInfo");
 		
-		mav.addObject("user", user);
 		return mav;
 		
 	}
 	
-	//测试
-	@RequestMapping(value = "/test")
-	public ModelAndView test(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attr){
-		ModelAndView mav = new ModelAndView();
-		attr.addFlashAttribute("test5","第五次测试");	
-		request.getSession().setAttribute("test7", "第七次测试");
-		mav.setViewName("redirect:/test.jsp");
-		return mav;
-	}
 	
 	//更新个人信息
 	@RequestMapping("/updateUserInfo")
-	public ModelAndView updatePersonInformation(HttpServletRequest request)throws UserExistException{
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView updatePersonInformation(HttpServletRequest request,@Valid BaseInfo baseinfo,BindingResult basebind)throws UserExistException{
+		mav = new ModelAndView();
+		mav.setViewName("forward:/edit/person.log");
+
+		
+		FieldError error = basebind.getFieldError("sex");
+		if(error!=null){
+			request.getSession().setAttribute("sexError", "性别属性有误");
+			return mav;
+		}
 
 		User user = userdao.get(super.getSessionUser(request).getUserid()); 
 		
@@ -60,53 +60,18 @@ public class EditPersonInformationController extends BaseController{	//编辑个
 		if(baseInfo == null){
 			baseInfo = new BaseInfo();
 			baseInfo.setUserid(user.getUserid());
-			user.setBaseInfo(baseInfo);
 		}
-		
-		/*
-		 * 将传来的参数赋值进基本信息里
-		 * 这样做不妥，目的只是为了回顾java动态反射等，可以直接静态赋值，简单粗暴
-		 */
-		Enumeration<String> params = request.getParameterNames();
-		StringBuffer sbf = null;
-		while(params.hasMoreElements()){
-			String param = params.nextElement();
-			sbf = new StringBuffer("set"+param);
-			sbf.replace(3, 4, sbf.substring(3, 4).toUpperCase());
-			
-			Method method = null;
+		user.setBaseInfo(baseInfo);
 
-			try{
-				switch(param){
-					case "birthday":{
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-DD-mm");
-						Date date = sdf.parse(request.getParameter(param));
-						method = baseInfo.getClass().getMethod(sbf.toString(),Date.class);
-						method.invoke(baseInfo,date);
-						break;
-					}
-					case "sex":{
-						char sex = request.getParameter(param).charAt(0);
-						method = baseInfo.getClass().getMethod(sbf.toString(),char.class);
-						method.invoke(baseInfo,sex);
-						break;
-					}
-					default:{
-						method = baseInfo.getClass().getMethod(sbf.toString(),String.class);
-						method.invoke(baseInfo,request.getParameter(param));
-					}
-				}
-			}catch(Exception e){
-				e.printStackTrace();
-				throw new UserExistException("678");
-			}
+		String date = baseinfo.getBirthday();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-DD-mm");
+		try{
+			sdf.parse(date);	
+		}catch(Exception e){
+			return mav;
 		}
 		
 		userdao.update(user);
-		
-		mav.setViewName("User/showInfo");	
-		mav.addObject("user", user);
-		
 		return mav;
 		
 	}

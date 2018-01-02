@@ -29,6 +29,16 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- 登陆过滤 -->
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>stu.wl.twitter.web.filter.LoginFilter</filter-class>
+	</filter>	
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>*.log</url-pattern>
+	</filter-mapping>
+	
 	<!-- SpringMVC -->
 	<servlet>
 		<servlet-name>twitter</servlet-name>
@@ -38,6 +48,10 @@
 	<servlet-mapping>
 		<servlet-name>twitter</servlet-name>
 		<url-pattern>*.log</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>twitter</servlet-name>
+		<url-pattern>*.nolog</url-pattern>
 	</servlet-mapping>
 	
 	<!-- 主页 -->
@@ -54,6 +68,14 @@
 	<error-page>
 		<exception-type>stu.wl.twitter.exception.UserExistException.class</exception-type>
 		<location>/error/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/error404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/error/error405.jsp</location>
 	</error-page>
 </web-app>
 

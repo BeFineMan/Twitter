@@ -28,7 +28,7 @@ request.setCharacterEncoding("UTF-8");
 			<h1>登录</h1>
 			<div class="login-top">
 
-			<form id="login_form" action="/Twitter/login/doLogin.log" method="post">
+			<form id="login_form" action="/Twitter/login/doLogin.nolog" method="post">
 				<div class="login-ic">
 					<i></i>
 					<input id="userName" type="text" value="用户" name="userName" onfocus="this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;User name&#39;;}">
@@ -60,8 +60,8 @@ request.setCharacterEncoding("UTF-8");
 		//判断用户是否登陆
 		var user = "<%=session.getAttribute("USER_CONTEXT")%>";
 		if(!(user == null || user == "null" || ""==user)){
-			alert("登陆成功");
-			window.location.href = "/Twitter/login/doLogin.log";
+			alert("用户已登陆");
+			window.location.href = "/Twitter/user/home.log";
 		}
 		
 		//检测错误信息errorMsg
@@ -88,7 +88,7 @@ request.setCharacterEncoding("UTF-8");
 		//注册
 		function register(){
 			var formObject = document.getElementById("login_form");
-			formObject.action = "/Twitter/register/res.log";			//定义URL
+			formObject.action = "/Twitter/register/res.nolog";			//定义URL
 			formObject.submit();				//执行表单提交
 		}
 		

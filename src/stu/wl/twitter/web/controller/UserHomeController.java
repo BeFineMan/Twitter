@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserHomeController {
 	private ModelAndView mav = null;
 	
+	//返回主页
 	@RequestMapping("/home")
 	public ModelAndView enterUserHome(){
 		mav = new ModelAndView();
@@ -28,6 +29,7 @@ public class UserHomeController {
 		return mav;
 	}
 
+	//上传头像
 	@RequestMapping("/uploadIcon")
 	public ModelAndView uploadIcon(HttpServletRequest request,HttpServletResponse response,HttpSession session,WebRequest web){
 		mav = new ModelAndView();
