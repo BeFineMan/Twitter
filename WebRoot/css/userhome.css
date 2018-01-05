@@ -1,19 +1,167 @@
 @CHARSET "UTF-8";
-body {
-	background-color:black; 
+html{
+	width: 1350px;
 }
-#user_info{
+body{
+	margin:0px;
+	border:0px; 
+	background-image:url('/Twitter/userhome_image/userhomebackground.jpg');
+}
+@font-face{
+	font-family: iwawa;
+	src:url('/Twitter/ttf/iWaWa.ttf');	
+}
+#all{
+	width:1000px;
+	margin:0px 350px 0px 350px;
+	padding-top:16px; 
+}
+/*爱娃娃字体*/
+.iwawa{
+	font-family: iwawa;
+}
+.all_table_border{
+	margin:0px 10px 10px 0px;
+}
+/*---------------------------------用户信息-------------------------------------------------*/
+#user_div{
+	
+}
+
+#user_info_top{
 	width:230px;
-	height:100px;
+	height:75px;
 	background-color:black;
 }
+#user_info_bottom{
+	width:198px;
+	height:65px;
+	padding:16px 16px 9px 16px;
+	background-color:white;
+}
+#user_info_bottom_table{
+	width:198px;
+	height:65px;
+	background-color:white;
+}
+#user_info_username{
+	border-top:10px;
+}
+/*头像*/
 #radiu_icon{
 	width: 60px; 
 	height: 60px; 
 	float:left; 
 	border-radius: 50%;
-	margin:50px; 
-	border: 3px solid #eee; 
-	overflow: hidden;
+	margin-top:50px;
+	margin-left:80px;
+	border: 1px solid #eee; 
+	overflow: hidden;		/*溢出，移除溢出的*/
+	position:absolute;		/*绝对定位不占空间*/
+	top:45px;
 	background-color:green; 
 } 
+
+/*用户信息字体*/
+.user_info_bottom_font{
+	text-decoration: none;
+	color: #808080;
+	font-size: 12px;
+}
+/*------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------发表动态--------------------------------------------------------------------------*/
+#publish_dynamic_background{
+	width:580px;
+	height:140px;
+	background-color:white;
+	padding:15px 10px 10px 10px;
+	margin-bottom:10px;
+	border-radius: 2px;
+}
+/*有什么新鲜事要告诉大家*/
+#new_text{
+	width:580px;
+	height:21px;
+	font-family: iwawa;
+	font-size:1.2em;
+	color:blue;
+	background-color:white;
+	margin-bottom: 2px;
+	
+}
+/*多行文本*/
+#publish_dynamic_textarea{
+	width:568px; 
+	height:68px; 
+	border:1px solid #a1a1a1;		/*边框大小，实体，颜色*/
+	padding:5px; 
+	margin-top:4px;
+	background-color:white;
+}
+/*底部DIV*/
+#publish_dynamic_content_bottom{
+	width:580px;
+	height:35px;
+}
+/*底部左*/
+#publish_dynamic_content_bottom_left{
+	width:380px;
+	height:34px;
+	margin-top:10px;
+	background-color:white;
+	float:left;
+}
+/*底部左__底部左边的统一样式*/
+.publish_dynamic_content_bottom_left_class{
+	width:54px;
+	height:25px;
+	margin-right: 18px;
+	float:left;
+}
+/*底部左__当鼠标进入可点击的DIV时*/
+.publish_dynamic_content_bottom_left_class:HOVER{
+	color:orange;
+}
+/*底部左__所有表情的统一样式*/
+.publish_dynamic_content_bottom_left_face_class{
+	width:26px;
+	height:26px;
+	float:left;
+}
+/*底部左__所有文本的统一样式*/
+.publish_dynamic_content_bottom_left_face_text{
+	font-size:12px;
+	float:left;
+	margin-top:5px;
+}
+
+/*底部右*/
+#publish_dynamic_content_bottom_right{
+	width:200px;
+	height:30px;
+	margin-top:5px;
+	background-color:white;
+	float:left;
+}
+/*底部右边__按钮*/
+#publish_dynamic_content_bottom_right_buttom{
+	width:60px;
+	height:30px;
+	float:right;
+	border-radius:5%;	
+	border:1px solid #ffc09f; 
+	padding:0px 10px 0px 10px;
+	background-color:#ffc09f;
+	text-align: center;
+	font-family: iwawa;
+	color: white;
+}
+#publish_dynamic_content_bottom_right_buttom div{
+	margin-top:5px;
+}
+
+
+
+
+

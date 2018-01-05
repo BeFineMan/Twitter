@@ -33,5 +33,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  </li>
 	</ul>
   </div>
+  <div>
+  	<ul>
+  		<li>
+  			<a href="">首页</a>
+  		</li>
+  	</ul>
+  </div>
   </body>
 </html>
