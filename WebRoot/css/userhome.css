@@ -13,7 +13,7 @@ body{
 }
 #all{
 	width:1000px;
-	margin:0px 350px 0px 350px;
+	margin:0px 175px 0px 175px;
 	padding-top:16px; 
 }
 /*爱娃娃字体*/
@@ -23,9 +23,16 @@ body{
 .all_table_border{
 	margin:0px 10px 10px 0px;
 }
+/*主要内容*/
+#center_content{
+	float:right;
+}
 /*---------------------------------用户信息-------------------------------------------------*/
 #user_div{
-	
+	width:135;
+	display: block;
+	float:left;
+	background-color:yellow;
 }
 
 #user_info_top{
@@ -135,7 +142,16 @@ body{
 	float:left;
 	margin-top:5px;
 }
-
+/*图片file*/
+#file_image{
+	width:54px;
+	height:25px;
+	position:absolute;
+	left:400px;
+	opacity:0;
+	cursor:pointer;
+	z-index:1;
+}
 /*底部右*/
 #publish_dynamic_content_bottom_right{
 	width:200px;

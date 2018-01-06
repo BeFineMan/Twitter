@@ -16,22 +16,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="stylesheet" href="/Twitter/css/topnav.css" type="text/css">
+<!-- 样式 -->	
+<style>
+body{
+	margin:0px;
+	padding:0px;
+}
+
+#left_nav ul{
+	list-style-type: none;	/*去除li的原始样式*/
+	margin: 0px;
+	padding:0px;
+	width:130px;
+	padding-left:15px;
+	position: fixed;	/*不占据空间的定位*/
+	background-color:blue;
+}
+#left_nav ul li a{
+	height:34px;
+	display:block;
+	padding-top:7px;
+	font-size:15px;
+	font-weight:bold;
+	text-decoration: none;
+}
+	
+</style>
+
   </head>
-  
-  
   <body>
-  <div id="top_nav" style="margin-top:50px">
-    <ul>
-	  <li><a class="active" href="/Twitter/user/home.log">主页</a></li>
-	  <li><a href="/Twitter/edit/person.log">查看个人信息</a></li>
-	  <li><a href="#contact">联系</a></li>
-	  <li><a href="#about">关于</a></li>
-	  <li style="float:right"><a class="user_active" href="/Twitter/login/logout.log">注销</a></li>
-	  <li style="float:right">
-	  	<a class="user_active" href="">${USER_CONTEXT.userName}</a>
-	  </li>
-	</ul>
+  <div id="left_nav">
+  	<ul>
+  		<li>
+  			<a href="">首页</a>
+  		</li>
+  		<li>
+  			<a href="">我的收藏</a>
+  		</li>
+  	</ul>
   </div>
   </body>
 </html>

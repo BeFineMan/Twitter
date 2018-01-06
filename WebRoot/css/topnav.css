@@ -3,7 +3,7 @@ body{
 	margin:0;
 	padding:0;
 }
-ul {
+#top_nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -14,11 +14,11 @@ ul {
     width: 100%;
 }
 
-li {
+#top_nav ul li {
     float: left;
 }
 
-li a {
+#top_nav ul li a {
     display: block;
     color: white;
     text-align: center;
@@ -26,11 +26,11 @@ li a {
     text-decoration: none;
 }
 
-li a:hover {
+#top_nav li a:hover {
     background-color: #111;
 }
 
-li a:hover:not(.user_active) {
+#top_nav li a:hover:not(.user_active) {
     background-color: #111;
 }
 
