@@ -142,13 +142,13 @@ body{
 	float:left;
 	margin-top:5px;
 }
-/*图片file*/
+/*上传图片file*/
 #file_image{
 	width:54px;
 	height:25px;
 	position:absolute;
 	left:400px;
-	opacity:0;
+	opacity:10;
 	cursor:pointer;
 	z-index:1;
 }
@@ -159,6 +159,7 @@ body{
 	margin-top:5px;
 	background-color:white;
 	float:left;
+	cursor: pointer;
 }
 /*底部右边__按钮*/
 #publish_dynamic_content_bottom_right_buttom{

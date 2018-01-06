@@ -12,11 +12,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link href="/Twitter/css/userhome.css" rel="stylesheet" type="text/css" media="all">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="keywords" content="后台登录">
+	<script src="/Twitter/js/userhome.js" type="text/javascript"></script>
 </head>  
-<script>
-	function test(){
-	}
-</script>
 <body> 
 	<!-- 顶部导航 -->
 	<jsp:include page="/public/topnav.jsp"/> 
@@ -30,56 +27,56 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<table>
 			<tr>
 				<td>
-				<!-- 发表动态 -->		
-					<div id="publish_dynamic_background" class="all_table_border">
-						<!-- 这个DIV是动态上面的文字 -->	
-						<div id="new_text">有什么新鲜事想告诉大家？</div> 
-						<!-- 动态的多行框 -->
-						<div>
-							<textarea id="publish_dynamic_textarea" rows="" cols=""></textarea>
-						</div>
-						<!-- 动态底部 --> 
-				 		<div id="publish_dynamic_content_bottom">  
-				 			<!-- 底部左 -->
-				 			<div id="publish_dynamic_content_bottom_left">
-				 				<a href="">
-					 				<div class="publish_dynamic_content_bottom_left_class">
-										<div class="publish_dynamic_content_bottom_left_face_class">
-											<img src="/Twitter/userhome_image/font-61475.png" width="26" height="26">
+					<!-- 发表动态 -->	
+					<form id="publish_dynamic_form" action="" method="post">	
+						<div id="publish_dynamic_background" class="all_table_border">
+							<!-- 这个DIV是动态上面的文字 -->	
+							<div id="new_text">有什么新鲜事想告诉大家？</div> 
+							<!-- 动态的多行框 -->
+							<div>
+								<textarea id="publish_dynamic_textarea" name="content" rows="" cols=""></textarea>
+							</div>
+							<!-- 动态底部 --> 
+					 		<div id="publish_dynamic_content_bottom">  
+					 			<!-- 底部左 -->
+					 			<div id="publish_dynamic_content_bottom_left">
+					 				<a href="">
+						 				<div class="publish_dynamic_content_bottom_left_class">
+											<div class="publish_dynamic_content_bottom_left_face_class">
+												<img src="/Twitter/userhome_image/font-61475.png" width="26" height="26">
+											</div>
+											<div class="publish_dynamic_content_bottom_left_face_text">表情</div>
 										</div>
-										<div class="publish_dynamic_content_bottom_left_face_text">表情</div>
-									</div>
-				 				</a>
-				 				<!-- 上传图片 -->
-				 				<input id="file_image" type="file">
-					 			<div class="publish_dynamic_content_bottom_left_class">
-									<div class="publish_dynamic_content_bottom_left_face_class">
-										<img src="/Twitter/userhome_image/mobileslideshow.png" width="26" height="26">
-									</div>
-									<div class="publish_dynamic_content_bottom_left_face_text">图片</div>
-								</div>
-								<!-- 上传视频 -->
-				 				<a href="">
-					 				<div class="publish_dynamic_content_bottom_left_class">
+					 				</a>
+					 				<!-- 上传图片 -->
+					 				<input id="file_image" type="file" name="path">
+						 			<div class="publish_dynamic_content_bottom_left_class">
 										<div class="publish_dynamic_content_bottom_left_face_class">
-											<img src="/Twitter/userhome_image/409-video.png" width="26" height="26">
+											<img src="/Twitter/userhome_image/mobileslideshow.png" width="26" height="26">
 										</div>
-										<div class="publish_dynamic_content_bottom_left_face_text">视频</div>
+										<div class="publish_dynamic_content_bottom_left_face_text">图片</div>
 									</div>
-				 				</a>
-						 	</div>
-						 	<!-- 底部右 -->
-							<div id="publish_dynamic_content_bottom_right">  
-							 	<a href="" disabled>
+									<!-- 上传视频 -->
+					 				<a href="">
+						 				<div class="publish_dynamic_content_bottom_left_class">
+											<div class="publish_dynamic_content_bottom_left_face_class">
+												<img src="/Twitter/userhome_image/409-video.png" width="26" height="26">
+											</div>
+											<div class="publish_dynamic_content_bottom_left_face_text">视频</div>
+										</div>
+					 				</a>
+							 	</div>
+							 	<!-- 底部右 -->
+								<div id="publish_dynamic_content_bottom_right" onclick="publish();">  
 									<div id="publish_dynamic_content_bottom_right_buttom">
 										<div>
 											发布 
 										</div>
-								 	</div> 
-								 </a>
+									 </div> 
+								</div>
 							</div>
 						</div>
-					</div>
+					</form>
 				</td>
 				
 				<td>
