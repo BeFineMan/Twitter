@@ -84,7 +84,7 @@ public class Dynamic {	//动态
 	public void setDeliver_time(String deliver_time) {
 		this.deliver_time = deliver_time;
 	}
-	@Override
+	@Override  
 	@Transactional
 	public String toString() {
 		return "Dynamic [dynamicId=" + dynamicId + ", user=" + user + ", topic=" + topic + ", content=" + content
