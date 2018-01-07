@@ -155,11 +155,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div onclick="test();">测试点击我</div>.
 </body> 
 <script type="text/javascript" >
-<script type="text/javascript" >
 	/*动态改变动态的高度，根据文本的高度的增加而增加*/
 	function changeDynamicText(){
 		var dynamic = document.getElementById("dynamic_bottom_content_text");
-		if((!dynamic == null || dynamic =="null")){
+		if((!dynamic == null || dynamic == "null")){
 			var text_hight = dynamic.offsetHeight;
 			var dynamic_hight = document.getElementById("dynamic");
 			var new_dynamic_hight = text_hight-17+dynamic_hight.offsetHeight;
@@ -171,7 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	$.ajax(
  	{
  		type:"POST",  
-         url:"/Twitter/User/publishDynamic.log",  
+         url:"/Twitter/user/home.log",  
            dataType:"json",  
            data :JSON.stringify(jsondata),
           success:function(result){   //function1()
