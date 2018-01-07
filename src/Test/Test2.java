@@ -40,7 +40,7 @@ public class Test2 {
 		session.save(user);
 		tx.commit();*/
 		
-			User user = session.get(User.class, "aaaaaa111111");
+		User user = session.get(User.class, "aaaaaa111111");
 			
 		
 		tx.commit();

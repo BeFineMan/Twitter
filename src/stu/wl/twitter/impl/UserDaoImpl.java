@@ -2,6 +2,8 @@ package stu.wl.twitter.impl;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import stu.wl.twitter.dao.UserDao;
@@ -34,4 +36,21 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
 		return list.isEmpty() ? null : list.get(0);
 	}
 	
+	/*获取关注的用户*/
+	public List<User> getFocusByUser(User user){
+		Session session = super.getSession();
+		Transaction tx = session.beginTransaction();
+		
+		List<User> users = user.getFocusUser();
+		
+		tx.commit();
+		session.close();
+		return users;
+	}
+	
 }
+
+
+
+
+

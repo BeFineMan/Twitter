@@ -8,4 +8,5 @@ public interface UserDao extends BaseDao<User>{
 	User getUserByUserName(String userName);
 	List queryUserByUserName(String userName);
 	Object queryUserId(String userid);
+	List<User> getFocusByUser(User user);
 }

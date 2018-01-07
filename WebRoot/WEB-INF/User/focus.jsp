@@ -115,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</td>
 			</tr>
 			<!-- 以下是动态的生成 -->
-			<c:forEach items="${requestScope.foucs }" var="focus">
+			<c:forEach items="${requestScope.focus }" var="focus">
 				<tr>
 					<td>
 						<div>${focus.baseInfo.nickName}</div>

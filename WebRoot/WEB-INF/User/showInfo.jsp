@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 	<meta http-equiv="Content+-Type" content="text/html; charset=UTF-8">
-	<title>乌云后台登录</title>
+	<title>个人信息</title>
 	<link href="/Twitter/css/style.css" rel="stylesheet" type="text/css" media="all">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="keywords" content="后台登录">
@@ -30,8 +30,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 
 <div class="login-form">
-			<div class="top-login">
-				<span><img src="/Twitter/images/group.png" alt=""></span>
+			<div >
+				<span><img src="/Twitter/userIcon/Scorpio.png" alt="" style="float: left;margin-bottom: 100px;position: absolute;"></span>
 			</div>
 			<h1>编辑信息</h1>
 			<div class="login-top">

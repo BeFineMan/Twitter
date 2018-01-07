@@ -18,6 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import stu.wl.twitter.dao.DynamicDao;
+import stu.wl.twitter.dao.UserDao;
 import stu.wl.twitter.domain.User;
 
 @Controller
@@ -25,6 +26,8 @@ import stu.wl.twitter.domain.User;
 public class UserHomeController extends BaseController{
 	@Autowired
 	private DynamicDao dynamicDao;
+	@Autowired
+	private UserDao userdao;
 	private ModelAndView mav = null;
 	
 	//返回主页
@@ -108,16 +111,28 @@ public class UserHomeController extends BaseController{
 		System.out.println("我没有跳转");
 		return null;
 	}
+	
+	/*获取关注的人*/
 	@RequestMapping("/getFocus")
-	public ModelAndView getFoucs(HttpServletRequest request,HttpServletResponse response,HttpSession session,WebRequest web)
-	{
-		List<User> list = super.getSessionUser(request).getFocusUser();
+	public ModelAndView getFoucs(HttpServletRequest request,HttpServletResponse response,HttpSession session,WebRequest web){
+		User user = super.getSessionUser(request);
+		List<User> list = userdao.getFocusByUser(user);
 		mav = new ModelAndView();
+
 		mav.setViewName("User/focus");
-		mav.addObject("focus", list);
+		request.setAttribute("focus", list);
 		return mav;
 	}
 	
+	
+	public UserDao getUserdao() {
+		return userdao;
+	}
+
+	public void setUserdao(UserDao userdao) {
+		this.userdao = userdao;
+	}
+
 	public DynamicDao getDynamicDao() {
 		return dynamicDao;
 	}

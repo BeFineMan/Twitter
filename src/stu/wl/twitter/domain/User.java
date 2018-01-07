@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -32,7 +33,7 @@ public class User implements Serializable{
 	private String password;	//密码
 	private String icon; 	//头像
 	
-	@OneToOne(targetEntity = BaseInfo.class,cascade = CascadeType.ALL)
+	@OneToOne(targetEntity = BaseInfo.class,cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name = "baseInfo_id")
 	private BaseInfo baseInfo;	//基本信息
 	
@@ -48,7 +49,7 @@ public class User implements Serializable{
 	@JoinColumn(name = "user_id")
 	private List<Discuss> discusses;	//评论
 	
-	@OneToMany(targetEntity = User.class,cascade = CascadeType.MERGE)
+	@OneToMany(targetEntity = User.class,cascade = CascadeType.MERGE,fetch=FetchType.EAGER)
 	@JoinColumn(name = "focusUser_id")	
 	private List<User> focusUser;	//关注的用户
  
