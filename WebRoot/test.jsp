@@ -45,7 +45,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<input type="file" class="hidden" value="">
 		<h1>点</h1>
 	</div>
-	
+
+	<jsp:forward page="">
+	<% request.setAttribute("name","value"); %>
 </body>
 </html>
 
