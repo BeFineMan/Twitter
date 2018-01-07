@@ -1,8 +1,10 @@
 package stu.wl.twitter.web.controller;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,10 +37,9 @@ public class UserHomeController extends BaseController{
 	
 	//返回主页
 	@RequestMapping("/home")
-	public ModelAndView enterUserHome(HttpServletRequest request){
+	public ModelAndView enterUserHome(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		mav = new ModelAndView();
 		mav.setViewName("User/userhome");
-		
 		User user = super.getSessionUser(request);
 		request.setAttribute("dynamics",dynamicDao.getDynamicsByUserByfocus(user));
 		return mav;
@@ -46,14 +47,10 @@ public class UserHomeController extends BaseController{
 
 	//发表动态
 	@RequestMapping("/publishDynamic")
-	public ModelAndView publishDynamic(HttpServletRequest request){
+	public ModelAndView publishDynamic(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		mav = new ModelAndView();
-	
-		String dString = request.getParameter("jsondata");
-		
-		JSONArray jsonArray = JSONArray.fromObject(dString);
-		String name = jsonArray.getJSONObject(0).getString("name");
-		System.out.println(name);
+		String dString = request.getParameter("content");
+		System.out.print(dString);
 		return mav;
 	}
 	
