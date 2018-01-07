@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import stu.wl.twitter.dao.DynamicDao;
 import stu.wl.twitter.dao.UserDao;
+import stu.wl.twitter.domain.Dynamic;
 import stu.wl.twitter.domain.User;
 
 @Controller
@@ -43,8 +46,14 @@ public class UserHomeController extends BaseController{
 
 	//发表动态
 	@RequestMapping("/publishDynamic")
-	public ModelAndView publishDynamic(){
+	public ModelAndView publishDynamic(HttpServletRequest request){
 		mav = new ModelAndView();
+	
+		String dString = request.getParameter("jsondata");
+		
+		JSONArray jsonArray = JSONArray.fromObject(dString);
+		String name = jsonArray.getJSONObject(0).getString("name");
+		
 		return mav;
 	}
 	

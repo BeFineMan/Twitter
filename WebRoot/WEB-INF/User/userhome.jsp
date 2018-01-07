@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<form id="publish_dynamic_form" action="/Twitter/user/publishDynamic.log" method="post">	
 						<div id="publish_dynamic_background" class="all_table_border">
 							<!-- 这个DIV是动态上面的文字 -->	
-							<div id="new_text">有什么新鲜事想告诉大家？</div> 
+							<div id="new_text">有什么新鲜事想告诉大家？</div>
 							<!-- 动态的多行框 -->
 							<div>
 								<textarea id="publish_dynamic_textarea" name="content" rows="" cols=""></textarea>
@@ -153,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <div onclick="test();">测试点击我</div>.
 </body> 
-<script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.1.min.js">
 	/*动态改变动态的高度，根据文本的高度的增加而增加*/
 	function changeDynamicText(){
 		var text_hight = document.getElementById("dynamic_bottom_content_text").offsetHeight;
@@ -162,6 +162,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		dynamic_hight.style.height = new_dynamic_hight+"px";
 	};
 	changeDynamicText();
+	
+	var jsondata= [{name:"jon",age:"12"},{name:"jic",age:"18"},{name:"petter",age:"14"}]
+ 	$.ajax(
+ 	{
+ 		type:"POST",  
+
+         url:"/Twitter/User/publishDynamic",  
+
+           dataType:"json",  
+           data :JSON.stringify(jsondata),
+          success:function(result){   //function1()
+          	alert(result)
+        }  
+
+         failure:function (result) {   
+
+            alert('Failed');   
+
+         }, 
+ 	}
+ 	)
 </script>
 </html>
 
