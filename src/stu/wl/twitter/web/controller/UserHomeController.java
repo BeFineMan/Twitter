@@ -53,7 +53,7 @@ public class UserHomeController extends BaseController{
 		
 		JSONArray jsonArray = JSONArray.fromObject(dString);
 		String name = jsonArray.getJSONObject(0).getString("name");
-		
+		System.out.println(name);
 		return mav;
 	}
 	

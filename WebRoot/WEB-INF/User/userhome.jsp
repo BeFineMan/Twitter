@@ -14,6 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="keywords" content="后台登录">
 	<script src="/Twitter/js/userhome.js" type="text/javascript"></script>
+	<script type="text/javascript" src ="/Twitter/js/jquery-3.2.1.min.js"></script>
 </head>  
 <body style="background-color:#696969;"> 
 	<% request.setAttribute("name","value");%>
@@ -153,36 +154,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <div onclick="test();">测试点击我</div>.
 </body> 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.1.min.js">
+<script type="text/javascript" >
 	/*动态改变动态的高度，根据文本的高度的增加而增加*/
 	function changeDynamicText(){
-		var text_hight = document.getElementById("dynamic_bottom_content_text").offsetHeight;
-		var dynamic_hight = document.getElementById("dynamic");
-		var new_dynamic_hight = text_hight-17+dynamic_hight.offsetHeight;
-		dynamic_hight.style.height = new_dynamic_hight+"px";
+		var dynamic = document.getElementById("dynamic_bottom_content_text");
+		if((!dynamic == null || dynamic =="null")){
+			var text_hight = dynamic.offsetHeight;
+			var dynamic_hight = document.getElementById("dynamic");
+			var new_dynamic_hight = text_hight-17+dynamic_hight.offsetHeight;
+			dynamic_hight.style.height = new_dynamic_hight+"px";
+		}
 	};
 	changeDynamicText();
-	
-	var jsondata= [{name:"jon",age:"12"},{name:"jic",age:"18"},{name:"petter",age:"14"}]
- 	$.ajax(
+
+	alert("123");
+	var jsondata= [{name:"jon",age:"12"},{name:"jic",age:"18"},{name:"petter",age:"14"}];	
+	$.ajax(
  	{
  		type:"POST",  
-
-         url:"/Twitter/User/publishDynamic",  
-
+         url:"/Twitter/User/publishDynamic.log",  
            dataType:"json",  
            data :JSON.stringify(jsondata),
           success:function(result){   //function1()
           	alert(result)
-        }  
-
-         failure:function (result) {   
-
-            alert('Failed');   
-
-         }, 
+        } 
  	}
- 	)
+ 	); 
 </script>
 </html>
 
