@@ -15,6 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="/Twitter/js/userhome.js" type="text/javascript"></script>
 </head>  
 <body style="background-color:#696969;"> 
+	<% request.setAttribute("name","value");%>
 	<!-- 顶部导航 -->
 	<jsp:include page="/public/topnav.jsp"/> 
 	<!-- 左部导航 -->
@@ -28,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<td>
 					<!-- 发表动态 -->	
-					<form id="publish_dynamic_form" action="" method="post">	
+					<form id="publish_dynamic_form" action="/Twitter/user/publishDynamic.log" method="post">	
 						<div id="publish_dynamic_background" class="all_table_border">
 							<!-- 这个DIV是动态上面的文字 -->	
 							<div id="new_text">有什么新鲜事想告诉大家？</div> 
@@ -112,10 +113,52 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 			</div>  
 				</td>
 			</tr>
+			<!-- 以下是动态的生成 -->
+			<tr>
+				<td>
+					<div id="dynamic">
+						<!-- 上边的内容 -->
+						<div id="dynamic_top">
+							<div id="dynamic_top_icon">
+								<img src="/Twitter/userIcon/Scorpio.png" width="50" height="50" style="border-radius: 50%;"/>
+							</div>
+							<div id="dynamic_top_content_username">${sessionScope.USER_CONTEXT.nickName}</div>
+							<div id="dynamic_top_content_publish_time">发表时间</div>
+						</div>
+						
+						<!-- 下边的内容 --> 
+						<div id="dynamic_bottom_content">
+							<div id="dynamic_bottom_content_text">
+								文本<br>文本<br>文本<br>文本<br>文1本<br>
+							</div>
+							<div id="dynamic_bottom_content_imageOrVideo">图片或视频</div>
+						</div>
+					</div>
+				</td>
+			</tr>
 		</table>
 	</div>
 </div>
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div>
+	<form id="testform" action="/Twitter/user/test.log" method="post" enctype="multipart/form-data">
+		<input id="text" type="text" name="text">
+		<input id="file"  type="file" name="image">上传图片
+		<input type="submit" name="提交" value="提交" >
+	</form>
+</div>
+<div onclick="test();">测试点击我</div>.
 </body> 
+<script>
+	/*动态改变动态的高度，根据文本的高度的增加而增加*/
+	function changeDynamicText(){
+		var text_hight = document.getElementById("dynamic_bottom_content_text").offsetHeight;
+		var dynamic_hight = document.getElementById("dynamic");
+		var new_dynamic_hight = text_hight-17+dynamic_hight.offsetHeight;
+		dynamic_hight.style.height = new_dynamic_hight+"px";
+	};
+	changeDynamicText();
+</script>
 </html>
 
