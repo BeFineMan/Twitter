@@ -166,18 +166,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 	};
 	changeDynamicText();
-	var jsondata= [{name:"jon",age:"12"},{name:"jic",age:"18"},{name:"petter",age:"14"}];	
-	$.ajax(
- 	{
- 		type:"POST",  
-         url:"/Twitter/user/home.log",  
-           dataType:"json",  
-           data :JSON.stringify(jsondata),
-          success:function(result){   //function1()
-          	alert(result)
-        } 
- 	}
- 	); 
+	
+	function publish(){
+		document.getElementById("publish_dynamic_form").submit();
+	}
+	
 </script>
 </html>
 
