@@ -16,16 +16,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import stu.wl.twitter.domain.User;
+
 @Controller
 @RequestMapping("/user")
-public class UserHomeController {
+public class UserHomeController extends BaseController{
 	private ModelAndView mav = null;
 	
 	//返回主页
 	@RequestMapping("/home")
-	public ModelAndView enterUserHome(){
+	public ModelAndView enterUserHome(HttpServletRequest request){
 		mav = new ModelAndView();
 		mav.setViewName("User/userhome");
+		
+		User user = super.getSessionUser(request);
 		return mav;
 	}
 
