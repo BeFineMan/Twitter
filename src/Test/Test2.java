@@ -1,6 +1,8 @@
 package Test;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,43 +14,30 @@ import stu.wl.twitter.domain.User;
 
 public class Test2 {
 	public static void main(String args[]){
-		
+		System.out.println("ru1n");
 		Configuration cfg= new Configuration().configure("configuration/hibernate.cfg.xml");
 		SessionFactory sessionFactory = cfg.buildSessionFactory();
 		
 		Session session  = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
-		/*User user = null;
-		BaseInfo base = null;
-		for(int i = 0; i<5000000; i++){
-			tx = session.beginTransaction();
-			base = new BaseInfo();
-			base.setUserid("testtt"+i);
-			base.setNickName(i*i+"");
-			base.setRealName(i*10+"");
-			base.setSex('G');
-			base.setSimpleinfo(""+i*i*i);
-			
-			user = new User();
-			user.setUserid("testtt"+i);
-			user.setBaseInfo(base);
-			
-			session.save(user);
-			tx.commit();
+		User user = new User();
+		User user1 = new User();
+		User user2 = new User();
+		
+		user.setUserid("aaaaaa111111");
+		user1.setUserid("aaaaaa111112");
+		user2.setUserid("aaaaaa111113");
 
-		}*/
+		List<User> users = new LinkedList<User>();
+		users.add(user1);
+		users.add(user2);
 		
-		User user = session.get(User.class, "test999");
-		BaseInfo baseinfo = user.getBaseInfo();
-		baseinfo.setBirthday(new Date());
-		
-		session.update(user);
-		
-		long t1 = System.currentTimeMillis();
+		user.setFocusUser(users);
+		session.save(user1);
+		session.save(user2);
+		session.save(user);
 		tx.commit();
-		long t2 = System.currentTimeMillis();
-		System.out.println(t2-t1);
 		
 		session.close();
 	}

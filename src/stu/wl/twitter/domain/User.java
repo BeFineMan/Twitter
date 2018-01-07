@@ -47,7 +47,9 @@ public class User implements Serializable{
 	@OneToMany(targetEntity = Discuss.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private List<Discuss> discusses;	//评论
+	
 	@OneToMany(targetEntity = User.class,cascade = CascadeType.MERGE)
+	@JoinColumn(name = "focusUser_id")	
 	private List<User> focusUser;	//关注的用户
  
 	public User(){}
