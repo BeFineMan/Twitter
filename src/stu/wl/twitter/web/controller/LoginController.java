@@ -28,7 +28,7 @@ public class LoginController extends BaseController{
 		//如果用户已经登陆过，则直接跳转
 		Object sessionUser = request.getSession().getAttribute("USER_CONTEXT");
 		if(!(sessionUser == null || "".equals(sessionUser))){
-			mav.setViewName("forward:/user/home.log");
+			mav.setViewName("forward:/user/home.nolog");
 			return mav;
 		}
 		

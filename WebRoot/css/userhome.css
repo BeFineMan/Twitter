@@ -5,8 +5,10 @@ html{
 body{
 	margin:0px;
 	border:0px; 
-	background-image:url('/Twitter/userhome_image/userhomebackground.jpg');
-}
+ 	/* background-image:url('/Twitter/userhome_image/userhomebackground.jpg'); */
+	
+ 
+ }
 @font-face{
 	font-family: iwawa;
 	src:url('/Twitter/ttf/iWaWa.ttf');	

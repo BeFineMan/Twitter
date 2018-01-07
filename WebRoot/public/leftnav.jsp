@@ -30,8 +30,10 @@ body{
 	width:130px;
 	padding-left:15px;
 	position: fixed;	/*不占据空间的定位*/
-	background-color:blue;
-}
+	background-color:white;
+	color: #FFFAF0;
+/* 	background-image:url('/Twitter/userhome_image/userhomebackground.jpg');
+ */}
 #left_nav ul li a{
 	height:34px;
 	display:block;

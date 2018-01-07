@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="keywords" content="后台登录">
 	<script src="/Twitter/js/userhome.js" type="text/javascript"></script>
 </head>  
-<body> 
+<body style="background-color:#696969;"> 
 	<% request.setAttribute("name","value");%>
 	<!-- 顶部导航 -->
 	<jsp:include page="/public/topnav.jsp"/> 
@@ -122,14 +122,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div id="dynamic_top_icon">
 								<img src="/Twitter/userIcon/Scorpio.png" width="50" height="50" style="border-radius: 50%;"/>
 							</div>
-							<div id="dynamic_top_content_username">昵称</div>
+							<div id="dynamic_top_content_username"></div>
 							<div id="dynamic_top_content_publish_time">发表时间</div>
 						</div>
 						
 						<!-- 下边的内容 --> 
 						<div id="dynamic_bottom_content">
-							<div id="dynamic_bottom_content_text">
-								文本文本文本文本文本文本文本文本文本文本文本文本文本<br>文本<br>文本<br>文本<br>文1本<br>
+							<div id="dynamic_bottom_content_text" style="word-wrap:break-word; word-break:break-all;">
+								文本1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111<br>文本<br>文本<br>文本<br>文1本<br>
 							</div>
 							<div id="dynamic_bottom_content_imageOrVideo">图片或视频</div>
 						</div>
