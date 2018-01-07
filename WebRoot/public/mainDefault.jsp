@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>mainDefault.html</title>
+    <title>动态</title>
   <style type="text/css">
   	body {
 		margin-top: 100px;
