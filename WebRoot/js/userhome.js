@@ -24,6 +24,7 @@ function createXHR(){
 function publish(){
 	createXHR();
 	xmlHttp.open("post","/Twitter/user/publishDynamic.log");
+	xmlHttp.onreadystatechange = publishCallback;
 	var publish_dynamic_form = document.getElementById("publish_dynamic_form");
 	if(publish_dynamic_form != null){
 		for(var i = 0; i < publish_dynamic_form.length; i++){
@@ -33,6 +34,9 @@ function publish(){
 	}
 };
 
+function publishCallback(){
+	
+}
 
 
 

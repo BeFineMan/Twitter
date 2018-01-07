@@ -113,7 +113,7 @@ public class UserHomeController extends BaseController{
 	{
 		List<User> list = super.getSessionUser(request).getFocusUser();
 		mav = new ModelAndView();
-		mav.setViewName("User/fcous");
+		mav.setViewName("User/focus");
 		mav.addObject("focus", list);
 		return mav;
 	}
