@@ -108,7 +108,16 @@ public class UserHomeController extends BaseController{
 		System.out.println("我没有跳转");
 		return null;
 	}
-
+	@RequestMapping("/getFocus")
+	public ModelAndView getFoucs(HttpServletRequest request,HttpServletResponse response,HttpSession session,WebRequest web)
+	{
+		List<User> list = super.getSessionUser(request).getFocusUser();
+		mav = new ModelAndView();
+		mav.setViewName("User/fcous");
+		mav.addObject("focus", list);
+		return mav;
+	}
+	
 	public DynamicDao getDynamicDao() {
 		return dynamicDao;
 	}

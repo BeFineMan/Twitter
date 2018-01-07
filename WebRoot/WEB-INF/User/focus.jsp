@@ -105,7 +105,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<th>3</th>
 								</tr>
 								<tr>
-									<th class="user_info_bottom_font"><a href="/Twitter/user/getFocus.log">关注</a></th>
+									<th class="user_info_bottom_font">关注</th>
 									<th class="user_info_bottom_font">粉丝</th>
 									<th class="user_info_bottom_font">微博</th>
 								</tr>
@@ -115,27 +115,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</td>
 			</tr>
 			<!-- 以下是动态的生成 -->
-			<c:forEach items="${requestScope.dynamics}" var="dyns">
+			<c:forEach items="${requestScope.foucs }" var="focus">
 				<tr>
 					<td>
-						<div id="dynamic">
-							<!-- 上边的内容 -->
-							<div id="dynamic_top">
-								<div id="dynamic_top_icon">
-									<img src="/Twitter/userIcon/Scorpio.png" width="50" height="50" style="border-radius: 50%;"/>
-								</div>
-								<div id="dynamic_top_content_username">${dyns.user.baseInfo.nickName}</div>
-								<div id="dynamic_top_content_publish_time">${dyns.deliver_time}</div>
-							</div>
-							
-							<!-- 下边的内容 --> 
-							<div id="dynamic_bottom_content">
-								<div id="dynamic_bottom_content_text" style="word-wrap:break-word; word-break:break-all;">
-									${dyns.content}
-								</div>
-								<div id="dynamic_bottom_content_imageOrVideo">图片或视频</div>
-							</div>
-						</div>
+						<div>${focus.baseInfo.nickName}</div>
+						<div>${focus.baseInfo.simpleinfo}</div>
 					</td>
 				</tr>
 			</c:forEach>
