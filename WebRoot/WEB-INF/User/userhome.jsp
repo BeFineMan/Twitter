@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="keywords" content="后台登录">
 	<script src="/Twitter/js/userhome.js" type="text/javascript"></script>
 </head>  
-<body> 
+<body style="background-color:#696969;"> 
 	<!-- 顶部导航 -->
 	<jsp:include page="/public/topnav.jsp"/> 
 	<!-- 左部导航 -->
