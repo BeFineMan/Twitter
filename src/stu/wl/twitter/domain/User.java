@@ -32,6 +32,8 @@ public class User implements Serializable{
 	private String password;	//密码
 	private String icon; 	//头像
 	
+	
+	
 	@OneToOne(targetEntity = BaseInfo.class,cascade = CascadeType.ALL)
 	@JoinColumn(name = "baseInfo_id")
 	private BaseInfo baseInfo;	//基本信息
@@ -47,8 +49,6 @@ public class User implements Serializable{
 	@OneToMany(targetEntity = Discuss.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private List<Discuss> discusses;	//评论
-	@OneToMany(targetEntity = User.class,cascade = CascadeType.MERGE)
-	private List<User> focusUser;	//关注的用户
  
 	public User(){}
 	public String getUserid() {
@@ -98,12 +98,6 @@ public class User implements Serializable{
 	}
 	public void setIcon(String icon) {
 		this.icon = icon;
-	}
-	public List<User> getFocusUser() {
-		return focusUser;
-	}
-	public void setFocusUser(List<User> focusUser) {
-		this.focusUser = focusUser;
 	}
 	@Override
 	public String toString() {
