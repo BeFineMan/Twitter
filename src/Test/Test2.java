@@ -1,6 +1,7 @@
 package Test;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import stu.wl.twitter.domain.BaseInfo;
+import stu.wl.twitter.domain.Dynamic;
 import stu.wl.twitter.domain.User;
 
 public class Test2 {
@@ -21,7 +22,7 @@ public class Test2 {
 		Session session  = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
-		User user = new User();
+		/*User user = new User();
 		User user1 = new User();
 		User user2 = new User();
 		
@@ -37,8 +38,12 @@ public class Test2 {
 		session.save(user1);
 		session.save(user2);
 		session.save(user);
-		tx.commit();
+		tx.commit();*/
 		
+			User user = session.get(User.class, "aaaaaa111111");
+			
+		
+		tx.commit();
 		session.close();
 	}
 }

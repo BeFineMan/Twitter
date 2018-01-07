@@ -11,16 +11,20 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import stu.wl.twitter.dao.DynamicDao;
 import stu.wl.twitter.domain.User;
 
 @Controller
 @RequestMapping("/user")
 public class UserHomeController extends BaseController{
+	@Autowired
+	private DynamicDao dynamicDao;
 	private ModelAndView mav = null;
 	
 	//返回主页
@@ -30,6 +34,7 @@ public class UserHomeController extends BaseController{
 		mav.setViewName("User/userhome");
 		
 		User user = super.getSessionUser(request);
+		request.setAttribute("dynamics",dynamicDao.getDynamicsByUserByfocus(user));
 		return mav;
 	}
 
@@ -103,5 +108,14 @@ public class UserHomeController extends BaseController{
 		System.out.println("我没有跳转");
 		return null;
 	}
+
+	public DynamicDao getDynamicDao() {
+		return dynamicDao;
+	}
+
+	public void setDynamicDao(DynamicDao dynamicDao) {
+		this.dynamicDao = dynamicDao;
+	}
+	
 	
 }

@@ -59,6 +59,13 @@
 		<welcome-file>Login.jsp</welcome-file>
 	</welcome-file-list>
 	
+	<!-- 标签配置 -->
+	<jsp-config>
+		<taglib>
+			<taglib-uri>c</taglib-uri>
+			<taglib-location>/WEB-INF/c.tld</taglib-location>
+		</taglib>
+	</jsp-config>
 	
 	<!-- 错误页的设置 -->
 	<error-page>
