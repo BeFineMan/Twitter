@@ -40,8 +40,6 @@ public class RegisterController extends BaseController{
 		User user = new User();
 		user.setUserName(userName);
 		user.setPassword(password);
-		user.setBaseInfo(new BaseInfo());
-		user.setConcernInfo(new ConcernInfo());
 		
 		try {
 			userService.register(user);

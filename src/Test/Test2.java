@@ -10,37 +10,29 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import stu.wl.twitter.domain.BaseInfo;
 import stu.wl.twitter.domain.Dynamic;
 import stu.wl.twitter.domain.User;
 
 public class Test2 {
 	public static void main(String args[]){
-		System.out.println("ru1n");
+		System.out.println("ru11n");
 		Configuration cfg= new Configuration().configure("configuration/hibernate.cfg.xml");
 		SessionFactory sessionFactory = cfg.buildSessionFactory();
 		
+	
+
+		User user = new User();
+		user.setUserid("123123456123564123456213231213123425613");
+		
+		BaseInfo baseinfo = new BaseInfo();
+		baseinfo.setUserid("123123456123564123432132156123425613");
+		
+		user.setBaseInfo(baseinfo);
+		
 		Session session  = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-
-		/*User user = new User();
-		User user1 = new User();
-		User user2 = new User();
-		
-		user.setUserid("aaaaaa111111");
-		user1.setUserid("aaaaaa111112");
-		user2.setUserid("aaaaaa111113");
-
-		List<User> users = new LinkedList<User>();
-		users.add(user1);
-		users.add(user2);
-		
-		user.setFocusUser(users);
-		session.save(user1);
-		session.save(user2);
 		session.save(user);
-		tx.commit();*/
-		
-		User user = session.get(User.class, "aaaaaa111111");
 			
 		
 		tx.commit();

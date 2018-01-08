@@ -11,11 +11,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="Content+-Type" content="text/html; charset=UTF-8">
 	<title>乌云后台登录</title>
 	<link href="/Twitter/css/userhome.css" rel="stylesheet" type="text/css" media="all">
+	<link rel="stylesheet" type="text/css" href="/Twitter/css/globle.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="keywords" content="后台登录">
+	<script src="/Twitter/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="/Twitter/js/webuploader.min.js"></script>
+	<script src="/Twitter/js/diyUpload.js"></script>
 	<script src="/Twitter/js/userhome.js" type="text/javascript"></script>
-	<script type="text/javascript" src ="/Twitter/js/jquery-3.2.1.min.js"></script>
-</head>  
+</head>
+
 <body style="background-color:#696969;"> 
 	<% request.setAttribute("name","value");%>
 	<!-- 顶部导航 -->
@@ -31,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<td>
 					<!-- 发表动态 -->	
-					<form id="publish_dynamic_form" action="/Twitter/user/publishDynamic.log" method="post">	
+					<form id="publish_dynamic_form" action="/Twitter/user/uploadIcon.log" method="post" enctype="multipart/form-data">	
 						<div id="publish_dynamic_background" class="all_table_border">
 							<!-- 这个DIV是动态上面的文字 -->	
 							<div id="new_text">有什么新鲜事想告诉大家？</div>
@@ -60,15 +64,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="publish_dynamic_content_bottom_left_face_text">图片</div>
 									</div>
 									<!-- 上传视频 -->
-					 				<a href="">
-						 				<div class="publish_dynamic_content_bottom_left_class">
-											<div class="publish_dynamic_content_bottom_left_face_class">
-												<img src="/Twitter/userhome_image/409-video.png" width="26" height="26">
-											</div>
-											<div class="publish_dynamic_content_bottom_left_face_text">视频</div>
+					 				<input id="file_video" type="file" name="path">
+						 			<div class="publish_dynamic_content_bottom_left_class">
+										<div class="publish_dynamic_content_bottom_left_face_class">
+											<img src="/Twitter/userhome_image/409-video.png" width="26" height="26">
 										</div>
-					 				</a>
-							 	</div>
+										<div class="publish_dynamic_content_bottom_left_face_text">视频</div>
+									</div>
+							 	</div> 
 							 	<!-- 底部右 -->
 								<div id="publish_dynamic_content_bottom_right" onclick="publish();">  
 									<div id="publish_dynamic_content_bottom_right_buttom">
@@ -152,13 +155,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<input type="submit" name="提交" value="提交" >
 	</form>
 </div>
-<div onclick="test();">测试点击我</div>.
-</body> 
+<div onclick="test();">测试点击我11</div>.
+
+
+
+<div style="padding: 100px;">
+    <ul class="upload-ul clearfix">
+        <li class="upload-pick">
+            <div class="webuploader-container clearfix" id="goodsUpload"></div>
+        </li>
+    </ul>
+</div>
+</body>  
 <script type="text/javascript" >
 	/*动态改变动态的高度，根据文本的高度的增加而增加*/
 	function changeDynamicText(){
 		var dynamic = document.getElementById("dynamic_bottom_content_text");
-		if((!dynamic == null || dynamic =="null")){
+		if((!dynamic == null || dynamic == "null")){
 			var text_hight = dynamic.offsetHeight;
 			var dynamic_hight = document.getElementById("dynamic");
 			var new_dynamic_hight = text_hight-17+dynamic_hight.offsetHeight;
@@ -166,7 +179,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 	};
 	changeDynamicText();
-	
 	function publish(){
 		document.getElementById("publish_dynamic_form").submit();
 	}

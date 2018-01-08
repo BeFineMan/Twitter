@@ -49,23 +49,25 @@ public class UserHomeController extends BaseController{
 
 	//发表动态
 	@RequestMapping(value = "/publishDynamic", method = RequestMethod.POST)
-	public ModelAndView publishDynamic(HttpServletRequest request){
+	public ModelAndView publishDynamic(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		mav = new ModelAndView();
 		mav.setViewName("User/userhome");
 		String dString = request.getParameter("content");
 		System.out.print(dString);
+		mav.setViewName("forward:/user/home.log");
+		System.out.println("111");
 		return mav;
 	}
 	
 	//上传头像
 	@RequestMapping("/uploadIcon")
-	public ModelAndView uploadIcon(HttpServletRequest request,HttpServletResponse response,HttpSession session,WebRequest web){
+	public ModelAndView uploadIcon(HttpServletRequest request,HttpServletResponse response,HttpSession session){
 		mav = new ModelAndView();
 		mav.setViewName("User/userhome");
 		
 		DiskFileItemFactory factory = new DiskFileItemFactory();	//创建磁盘工厂
 		ServletFileUpload upload = new ServletFileUpload(factory);		//创建处理工具
-		upload.setFileSizeMax(3145728);	//设置最大上传大小	3M:3*1024*1024
+		//upload.setFileSizeMax(3145728);	//设置最大上传大小	3M:3*1024*1024
 		List<FileItem> items = null;
 		try {
 			items = upload.parseRequest(request);
@@ -81,7 +83,7 @@ public class UserHomeController extends BaseController{
 				String fileName = item.getName();
 				String contentType = item.getContentType();
 				long size = item.getSize();
-				System.out.println("fileName:"+fileName+"contentType:"+contentType+"size:"+size);
+				System.out.println("fileName:"+fileName+"contentType:"+contentType+",size:"+size);
 			}else{
 				String value = item.getString();
 				System.out.println("value:"+value);

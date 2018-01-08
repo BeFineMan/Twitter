@@ -65,7 +65,15 @@ public class DynamicDaoImpl extends BaseDaoImpl<Dynamic> implements DynamicDao{
 			}
 			
 		}
+		tx.commit();
+		session.close();
 		
 		return dynamics;
 	}
+	
+	
+	
 }
+
+
+
