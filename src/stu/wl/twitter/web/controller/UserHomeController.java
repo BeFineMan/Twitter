@@ -77,7 +77,7 @@ public class UserHomeController extends BaseController{
 			FileItem item = iter.next();
 			String fieldName = item.getFieldName();		//得到表单控件的名称
 			System.out.println("表单控件名称"+fieldName);
-			if(!item.isFormField()){
+			if(!item.isFormField()){		//如果是表单文件
 				String fileName = item.getName();
 				String contentType = item.getContentType();
 				long size = item.getSize();
@@ -91,7 +91,9 @@ public class UserHomeController extends BaseController{
 	}
 	
 	@RequestMapping("/test")
-	public String test(HttpServletRequest request,HttpServletResponse response,HttpSession session,WebRequest web){
+	public ModelAndView test(HttpServletRequest request,HttpServletResponse response,HttpSession session){
+		mav = new ModelAndView();
+		mav.setViewName("forward:/user/home.log");
 		
 		DiskFileItemFactory factory = new DiskFileItemFactory();	//创建磁盘工厂
 		ServletFileUpload upload = new ServletFileUpload(factory);		//创建处理工具
@@ -105,11 +107,17 @@ public class UserHomeController extends BaseController{
 		Iterator<FileItem> iter = items.iterator();
 		while(iter.hasNext()){
 			FileItem item = iter.next();
-			String fieldName = item.getFieldName();		//得到表单控件的名称
-			System.out.println("表单控件名称"+fieldName);
 			if(!item.isFormField()){
+				if(!("image/png".equals(item.getContentType()))){	//如果上传的不是图片
+					request.getSession().setAttribute("imageFomatError", "上传的格式不正确，请上传图片");
+					return mav;
+				}
+				if(item.getSize() > 3145728){
+					request.getSession().setAttribute("imageSizeError", "图片的大小不能超过3M");
+					return mav;
+				}
 				String fileName = item.getName();
-				String contentType = item.getContentType();
+				String contentType = ;
 				long size = item.getSize();
 				System.out.println("fileName:"+fileName+"contentType:"+contentType+"size:"+size);
 			}else{

@@ -11,12 +11,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="Content+-Type" content="text/html; charset=UTF-8">
 	<title>乌云后台登录</title>
 	<link href="/Twitter/css/userhome.css" rel="stylesheet" type="text/css" media="all">
-	<link rel="stylesheet" type="text/css" href="/Twitter/css/globle.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="keywords" content="后台登录">
 	<script src="/Twitter/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-	<script src="/Twitter/js/webuploader.min.js"></script>
-	<script src="/Twitter/js/diyUpload.js"></script>
 	<script src="/Twitter/js/userhome.js" type="text/javascript"></script>
 </head>
 
@@ -64,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="publish_dynamic_content_bottom_left_face_text">图片</div>
 									</div>
 									<!-- 上传视频 -->
-					 				<input id="file_video" type="file" name="path">
+					 				<!--  <input id="file_video" type="file" name="path">-->
 						 			<div class="publish_dynamic_content_bottom_left_class">
 										<div class="publish_dynamic_content_bottom_left_face_class">
 											<img src="/Twitter/userhome_image/409-video.png" width="26" height="26">
@@ -179,9 +176,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 	};
 	changeDynamicText();
-	function publish(){
-		document.getElementById("publish_dynamic_form").submit();
-	}
 	
 </script>
 </html>
