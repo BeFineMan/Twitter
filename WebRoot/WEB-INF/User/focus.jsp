@@ -22,8 +22,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="all_top">
 			<div id="all_top_icon">
 				<img src="/Twitter/userIcon/Scorpio.png" width="100" height="100">
-			</div> 
-			12
+			</div>
+			121
 		</div>
 	</div> 
 </body>  

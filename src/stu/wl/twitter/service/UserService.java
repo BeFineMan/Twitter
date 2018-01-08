@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import stu.wl.twitter.dao.UserDao;
+import stu.wl.twitter.domain.BaseInfo;
+import stu.wl.twitter.domain.ConcernInfo;
 import stu.wl.twitter.domain.User;
 import stu.wl.twitter.exception.UserExistException;
 
@@ -20,12 +22,22 @@ public class UserService {
 	//注册一个新用户，如果用户已存在，则抛出UserExistException异常
 	public void register(User user) throws UserExistException{
 		User u = userdao.getUserByUserName(user.getUserName());
+		BaseInfo baseInfo = new BaseInfo();
+		ConcernInfo concernInfo = new ConcernInfo();
+		
+		String userid = null;
 		if(u != null){
 			throw new UserExistException("用户名已存在");
 		}else{
 			synchronized (this) {
-				user.setUserid(this.getSystemTime());
+				userid = this.getSystemTime();
+				user.setUserid(userid);
 			}
+			baseInfo.setUserid(userid);
+			concernInfo.setUserid(userid);
+			
+			user.setBaseInfo(baseInfo);
+			user.setConcernInfo(concernInfo);
 			userdao.save(user);
 		}
 	}
