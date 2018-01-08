@@ -15,7 +15,9 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,9 +48,10 @@ public class UserHomeController extends BaseController{
 	}
 
 	//发表动态
-	@RequestMapping("/publishDynamic")
-	public ModelAndView publishDynamic(HttpServletRequest request, HttpServletResponse response) throws IOException{
+	@RequestMapping(value = "/publishDynamic", method = RequestMethod.POST)
+	public ModelAndView publishDynamic(HttpServletRequest request){
 		mav = new ModelAndView();
+		mav.setViewName("User/userhome");
 		String dString = request.getParameter("content");
 		System.out.print(dString);
 		return mav;
