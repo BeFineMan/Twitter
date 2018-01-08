@@ -11,10 +11,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="Content+-Type" content="text/html; charset=UTF-8">
 	<title>乌云后台登录</title>
 	<link href="/Twitter/css/userhome.css" rel="stylesheet" type="text/css" media="all">
-	<link rel="stylesheet" type="text/css" href="/Twitter/css/globle.css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- 	<link rel="stylesheet" type="text/css" href="/Twitter/css/globle.css" />
+ -->	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="keywords" content="后台登录">
-	<script src="/Twitter/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+ 	<script src="/Twitter/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 	<script src="/Twitter/js/webuploader.min.js"></script>
 	<script src="/Twitter/js/diyUpload.js"></script>
 	<script src="/Twitter/js/userhome.js" type="text/javascript"></script>
