@@ -11,12 +11,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="Content+-Type" content="text/html; charset=UTF-8">
 	<title>乌云后台登录</title>
 	<link href="/Twitter/css/userhome.css" rel="stylesheet" type="text/css" media="all">
-<!-- 	<link rel="stylesheet" type="text/css" href="/Twitter/css/globle.css" />
- -->	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="keywords" content="后台登录">
- 	<script src="/Twitter/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-	<script src="/Twitter/js/webuploader.min.js"></script>
-	<script src="/Twitter/js/diyUpload.js"></script>
+	<script src="/Twitter/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 	<script src="/Twitter/js/userhome.js" type="text/javascript"></script>
 </head>
 
@@ -35,7 +33,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<td>
 					<!-- 发表动态 -->	
-					<form id="publish_dynamic_form" action="/Twitter/user/uploadIcon.log" method="post" enctype="multipart/form-data">	
+
+					<form id="publish_dynamic_form" action="/Twitter/user/publishDynamic.log" method="post"  enctype="multipart/form-data">	
 						<div id="publish_dynamic_background" class="all_table_border">
 							<!-- 这个DIV是动态上面的文字 -->	
 							<div id="new_text">有什么新鲜事想告诉大家？</div>
@@ -64,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="publish_dynamic_content_bottom_left_face_text">图片</div>
 									</div>
 									<!-- 上传视频 -->
-					 				<input id="file_video" type="file" name="path">
+					 				<!--  <input id="file_video" type="file" name="path">-->
 						 			<div class="publish_dynamic_content_bottom_left_class">
 										<div class="publish_dynamic_content_bottom_left_face_class">
 											<img src="/Twitter/userhome_image/409-video.png" width="26" height="26">
@@ -178,10 +177,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			dynamic_hight.style.height = new_dynamic_hight+"px";
 		}
 	};
-	changeDynamicText();
 	function publish(){
-		document.getElementById("publish_dynamic_form").submit();
+		var form  = document.getElementById("publish_dynamic_form");
+		form.submit();
 	}
+	changeDynamicText();
 	
 </script>
 </html>

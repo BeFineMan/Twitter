@@ -11,14 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name="t_user")
@@ -49,10 +49,14 @@ public class User implements Serializable{
 	@JoinColumn(name = "user_id")
 	private List<Discuss> discusses;	//评论
 	
-	@OneToMany(targetEntity = User.class,cascade = CascadeType.MERGE,fetch=FetchType.EAGER)
-	@JoinColumn(name = "focusUser_id")	
-	private List<User> focusUser;	//关注的用户
- 
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private FocusUser beFocusUser;	//变成关注人
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private FansUser beFansUser;		//变成粉丝
+	
 	public User(){}
 	public String getUserid() {
 		return userid;
@@ -102,16 +106,23 @@ public class User implements Serializable{
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-	public List<User> getFocusUser() {
-		return focusUser;
-	}
-	public void setFocusUser(List<User> focusUser) {
-		this.focusUser = focusUser;
-	}
+	
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", userName=" + userName + ", password=" + password + ", baseInfo=" + baseInfo
 				+ ", concernInfo=" + concernInfo + "]";
+	}
+	public FocusUser getBeFocusUser() {
+		return beFocusUser;
+	}
+	public void setBeFocusUser(FocusUser beFocusUser) {
+		this.beFocusUser = beFocusUser;
+	}
+	public FansUser getBeFansUser() {
+		return beFansUser;
+	}
+	public void setBeFansUser(FansUser beFansUser) {
+		this.beFansUser = beFansUser;
 	}
 	
 	

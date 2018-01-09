@@ -36,36 +36,6 @@ function publish(){
 
 function publishCallback(){
 }
-$(function(){
-	var $test = function(){
-		alert("打算大苏打111");
-	};
-	$test();
-	//上传图片
-	var $tgaUpload = $('#goodsUpload').diyUpload({
-		url:'/Twitter/user/uploadIcon.log',
-		success:function( data ) { 
-			alert("啊啊啊啊");
-		},
-		error:function( err ) {
-			alert("哦哦哦哦哦哦")
-		},
-		buttonText : '',
-		accept: {
-			title: "Images",
-			extensions: 'gif,jpg,jpeg,bmp,png'
-		},
-		thumb:{
-			width:120,
-			height:90,
-			quality:100,
-			allowMagnify:true,
-			crop:true,
-			type:"image/jpeg"
-		}
-	});
-	$tgaUpload();
-});
 
 
 

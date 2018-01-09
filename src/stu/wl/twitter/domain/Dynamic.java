@@ -1,5 +1,6 @@
 package stu.wl.twitter.domain;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Table(name="t_dynamic")
 public class Dynamic {	//动态
 	@Id
-	@GeneratedValue(generator = "assigned")
-	@GenericGenerator(name = "assigned", strategy = "assigned")
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
 	private String dynamicId;	//id
 	
 	@ManyToOne(targetEntity = User.class, cascade = CascadeType.MERGE)
