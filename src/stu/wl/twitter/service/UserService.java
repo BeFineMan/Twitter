@@ -4,13 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import stu.wl.twitter.dao.UserDao;
 import stu.wl.twitter.domain.BaseInfo;
 import stu.wl.twitter.domain.ConcernInfo;
+import stu.wl.twitter.domain.FansUser;
+import stu.wl.twitter.domain.FocusUser;
 import stu.wl.twitter.domain.User;
 import stu.wl.twitter.exception.UserExistException;
 
@@ -24,6 +25,8 @@ public class UserService {
 		User u = userdao.getUserByUserName(user.getUserName());
 		BaseInfo baseInfo = new BaseInfo();
 		ConcernInfo concernInfo = new ConcernInfo();
+		FocusUser focusUser = new FocusUser();
+		FansUser fansUser = new FansUser();
 		
 		String userid = null;
 		if(u != null){
@@ -33,9 +36,14 @@ public class UserService {
 				userid = this.getSystemTime();
 				user.setUserid(userid);
 			}
+			
 			baseInfo.setUserid(userid);
 			concernInfo.setUserid(userid);
+			fansUser.setUser(user);
+			focusUser.setUser(user);
 			
+			user.setBeFansUser(fansUser);
+			user.setBeFocusUser(focusUser);
 			user.setBaseInfo(baseInfo);
 			user.setConcernInfo(concernInfo);
 			userdao.save(user);
