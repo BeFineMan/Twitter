@@ -179,6 +179,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	};
 	function publish(){
 		var form  = document.getElementById("publish_dynamic_form");
+		/*var attributes = form.Elements;
+		alert(form.)*/
 		form.submit();
 	}
 	changeDynamicText();

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import stu.wl.twitter.dao.DynamicDao;
 import stu.wl.twitter.domain.Dynamic;
+import stu.wl.twitter.util.TwitterUtil;
 
 @Service("dynamicService")
 public class DynamicService {
@@ -21,23 +22,44 @@ public class DynamicService {
 
 	public boolean publishDynamic(Dynamic dynamic,InputStream in){
 		dynamic.setDeliver_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-		String fileName = dynamic.getPath();
+		StringBuffer fileName = new StringBuffer(TwitterUtil.getSystemTime()+dynamic.getPath());
+		System.out.println("文件名字："+fileName);
 		
 		if(in != null){
 			//获取类的路径
 			StringBuffer realPath = new StringBuffer(DynamicService.class.getResource("/").getPath());	
 			System.out.println("------真实路径:"+realPath);
 			
+			//文件上传的路径
 			StringBuffer uploadPath  = new StringBuffer(realPath.substring(0, realPath.indexOf("WEB-INF/classes/")));
-			StringBuffer imagePath = new StringBuffer("/Twitter");
-			System.out.println("uploadPath:"+uploadPath.toString());
-			imagePath.append("dynamicImage\\").append(dynamic.getUser().getUserid()).append("\\"+fileName);
-			uploadPath.append("dynamicImage\\").append(dynamic.getUser().getUserid()).append("\\"+fileName);
-			System.out.println("--------文件路径:"+uploadPath.toString()+",-------图片路径:"+imagePath.toString());
+			//图片保存的路径
+			StringBuffer imagePath = new StringBuffer("/Twitter/");
+			
+			//创建文件夹
+			StringBuffer filedir = new StringBuffer();
+			filedir.append(imagePath.append("dynamicImage/").append(dynamic.getUser().getUserid()).append("/"));
+			
+			System.out.println("filedir的路径:"+filedir.toString()+"创建文件夹的路径："+uploadPath);
+			
+			imagePath.append("dynamicImage/").append(dynamic.getUser().getUserid()).append("/"+fileName);
+			filedir = uploadPath.append("dynamicImage/").append(dynamic.getUser().getUserid()).append("/");
+			System.out.println("真-文件上传路径："+filedir);
+			
+			File file = new File(filedir.toString().replaceAll("/", "\\\\"));
+			file.mkdir();
+			uploadPath.append(fileName);
+			
+			System.out.println("uploadPath:"+uploadPath.toString()+"，文件路径："+uploadPath);
+			/*imagePath.append("dynamicImage//").append(dynamic.getUser().getUserid()).append("//"+fileName);
+			uploadPath.append("dynamicImage//").append(dynamic.getUser().getUserid()).append("//"+fileName);*/
+			
+			
+			System.out.println("--------文件路径:"+uploadPath.toString().replaceAll("/", "\\\\")+",-------图片路径:"+imagePath.toString());
 			if(this.saveFile(uploadPath.toString(),in)==false){
 				System.out.println("文件保存失败");
 				return false;
 			} 
+			dynamic.setPath(imagePath.toString());
 		}
 		
 		dynamicDao.save(dynamic);
@@ -45,6 +67,7 @@ public class DynamicService {
 	}
 	
 	public boolean saveFile(String path,InputStream in){
+		System.out.println("最终路径："+path);
 		File file = new File(path);
 		
 		if(file.exists()){		//如果文件存在，则删除

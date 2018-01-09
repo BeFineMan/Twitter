@@ -102,23 +102,26 @@ public class UserHomeController extends BaseController{
 			e.printStackTrace();
 		}
 		
+		String imageFormat = null;
+		String content = null;
 		Iterator<FileItem> iter = items.iterator();
-		
-		
 		while(iter.hasNext()){
 			FileItem item = iter.next();
 
-			
 			if(!item.isFormField()){		//如果是文件
 				System.out.println("文件格式:"+item.getContentType()+"sad");
 				String fileName = item.getName();
 	
 				System.out.println("fileName:"+fileName+",--"+item.getFieldName());
+				
 				int point = fileName.lastIndexOf(".");
-				String imageFormat = fileName.substring(point+1);
+				if(point >= 0){
+					imageFormat = fileName.substring(point);
+				}
+				
 				System.out.println("真-文件格式:"+imageFormat);
 				
-				if(!("png".equals(imageFormat)||"jpg".equals(imageFormat) || "gif".equals(imageFormat))){	//上传的不是图片
+				if(!(".png".equals(imageFormat)||".jpg".equals(imageFormat) || ".gif".equals(imageFormat))){	//上传的不是图片
 					request.getSession().setAttribute("imageFomatError", "上传的格式不正确，请上传图片");
 					System.out.println("上传的格式不正确，请上传图片");
 					return mav;
@@ -128,8 +131,6 @@ public class UserHomeController extends BaseController{
 					System.out.println("图片的大小不能超过3M");
 					return mav;
 				}
-				System.out.println(fileName.substring(fileName.lastIndexOf("\\")+1));
-				dynamic.setPath(fileName.substring(fileName.lastIndexOf("\\")+1));
 				try {
 					in = item.getInputStream();
 				} catch (IOException e) {
@@ -138,12 +139,12 @@ public class UserHomeController extends BaseController{
 					return mav;
 				}
 			}else{
-
-				String content = request.getParameter("content");
-				dynamic.setContent(content);
+				content = request.getParameter("content");
 			}
 		}
-
+		
+		dynamic.setContent(content);
+		dynamic.setPath(imageFormat);
 		dynamic.setUser(super.getSessionUser(request));		
 		dynamic.setLike_number(0);
 		dynamicService.publishDynamic(dynamic, in); 
