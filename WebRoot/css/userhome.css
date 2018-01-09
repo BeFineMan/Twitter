@@ -34,7 +34,7 @@ body{
 	width:135;
 	display: block;
 	float:left;
-	background-color:yellow;
+	background-color:white;
 }
 
 #user_info_top{
@@ -191,7 +191,7 @@ body{
 #dynamic_top{
 	width:560px;
 	height:48px;
-	background-color:yellow;
+	background-color:white;
 }
 /*头像*/
 #dynamic_top_icon{
@@ -224,7 +224,7 @@ body{
 	width:500px;
 	height:311px;
 	margin:4px 20px 1px 70px; 
-	background-color:blue;
+	background-color:white;
 }
 #dynamic_bottom_content_text{
 	margin:0px;
@@ -237,5 +237,5 @@ body{
 	width:500px;
 	height:281px;
 	float:left;
-	background-color:green;
+	background-color:white;
 }

@@ -136,6 +136,23 @@ public class UserHomeController extends BaseController{
 	}
 	
 	
+	/*获取关注的人*/
+	@RequestMapping("/getFocusDynamic")
+	public ModelAndView getFocusDynamic(HttpServletRequest request,HttpServletResponse response,HttpSession session,WebRequest web){
+		String id = request.getParameter("id");
+		User user = userdao.get(id);
+		List dynamicList=user.getDynamics();
+		
+		mav = new ModelAndView();
+		request.setAttribute("dynamics", dynamicList);
+		mav.setViewName("User/focushome");
+		
+		return mav;
+	}
+	
+	
+	
+	
 	public UserDao getUserdao() {
 		return userdao;
 	}
