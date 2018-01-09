@@ -16,4 +16,7 @@ public class BaseController {
 	protected void removeSessionUser(HttpServletRequest request){
 		request.getSession().removeAttribute(CommonConstant.USER_CONTEXT);
 	}
+	protected String getContentType(HttpServletRequest request){
+		return null; 
+	}
 }

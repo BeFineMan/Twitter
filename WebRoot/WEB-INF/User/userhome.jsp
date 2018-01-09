@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<td>
 					<!-- 发表动态 -->	
-					<form id="publish_dynamic_form" action="/Twitter/user/uploadIcon.log" method="post" enctype="multipart/form-data">	
+					<form id="publish_dynamic_form" action="/Twitter/user/publishDynamic.log" method="post"  enctype="multipart/form-data">	
 						<div id="publish_dynamic_background" class="all_table_border">
 							<!-- 这个DIV是动态上面的文字 -->	
 							<div id="new_text">有什么新鲜事想告诉大家？</div>
@@ -175,6 +175,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			dynamic_hight.style.height = new_dynamic_hight+"px";
 		}
 	};
+	function publish(){
+		var form  = document.getElementById("publish_dynamic_form");
+		form.submit();
+	}
 	changeDynamicText();
 	
 </script>

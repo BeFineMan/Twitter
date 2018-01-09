@@ -21,7 +21,7 @@ public class DynamicDaoImpl extends BaseDaoImpl<Dynamic> implements DynamicDao{
 		Session session  = super.getSession();
 		Transaction tx = session.beginTransaction();
 		
-		List list =  (List) session.createNativeQuery("SELECT * FROM t_dynamic WHERE user_id = any(SELECT user_id FROM t_user WHERE focusUser_id = '"+user.getUserid()+"') ORDER BY deliver_time DESC").getResultList();
+		List list =  (List) session.createNativeQuery("SELECT * FROM t_dynamic WHERE user_id = any(SELECT focus_id FROM T_FOCUSANDFANS WHERE fans_id = '"+user.getUserid()+"') ORDER BY deliver_time DESC").getResultList();
 		List<Dynamic> dynamics = new LinkedList<Dynamic>();
 		Dynamic dynamic = null;
 		for(int i = 0; i < list.size(); i++){

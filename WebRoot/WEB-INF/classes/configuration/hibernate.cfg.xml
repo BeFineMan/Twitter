@@ -45,5 +45,7 @@
 	<mapping class="stu.wl.twitter.domain.ReplierUser"></mapping>
 	<mapping class="stu.wl.twitter.domain.BaseInfo"></mapping>
 	<mapping class="stu.wl.twitter.domain.ConcernInfo"></mapping>
+	<mapping class="stu.wl.twitter.domain.FocusUser"></mapping>
+	<mapping class="stu.wl.twitter.domain.FansUser"></mapping>
 </session-factory>
 </hibernate-configuration>
