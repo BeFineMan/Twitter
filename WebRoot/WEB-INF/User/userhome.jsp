@@ -108,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<th>3</th>
 								</tr>
 								<tr>
-									<th class="user_info_bottom_font"><a href="/Twitter/user/getFocus.log">关注</a></th>
+									<th class="user_info_bottom_font"><a href="/Twitter/focusList.jsp">关注</a></th>
 									<th class="user_info_bottom_font">粉丝</th>
 									<th class="user_info_bottom_font">微博</th>
 								</tr>
@@ -186,8 +186,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		form.submit();
 	}
 	changeDynamicText();
-	var str = document.getElementById("abcdefg").value;
-	console.log(str+"大苏打撒");
 </script>
 </html>
-

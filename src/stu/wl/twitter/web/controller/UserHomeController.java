@@ -3,6 +3,7 @@ package stu.wl.twitter.web.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -85,7 +86,7 @@ public class UserHomeController extends BaseController{
 
 	//发表动态
 	@RequestMapping(value = "/publishDynamic", method = RequestMethod.POST)
-	public ModelAndView publishDynamic(HttpServletRequest request,HttpServletResponse response,HttpSession session){
+	public ModelAndView publishDynamic(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws UnsupportedEncodingException{
 		mav = new ModelAndView();
 		mav.setViewName("forward:/user/home.log");
 		
@@ -121,6 +122,11 @@ public class UserHomeController extends BaseController{
 				if(!(".png".equals(imageFormat)||".jpg".equals(imageFormat) || ".gif".equals(imageFormat))){	//上传的不是图片
 					request.getSession().setAttribute("imageFomatError", "上传的格式不正确，请上传图片");
 					System.out.println("上传的格式不正确，请上传图片");
+					dynamic.setContent(content);
+					dynamic.setPath(imageFormat);
+					dynamic.setUser(super.getSessionUser(request));		
+					dynamic.setLike_number(0);
+					dynamicService.publishDynamic(dynamic, in); 
 					return mav;
 				}
 				if(item.getSize() > 3145728){		//文件大小超过3M
@@ -136,7 +142,10 @@ public class UserHomeController extends BaseController{
 					return mav;
 				}
 			}else{
-				content = request.getParameter("content");
+				String name = item.getFieldName();
+				String value = item.getString("UTF-8");
+				content = new String(value.getBytes("iso8859-1"),"UTF-8");
+				//content = request.getParameter("content");
 			}
 		}
 		

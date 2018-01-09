@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head> 
 <meta charset="utf-8"> 
 <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"> 
-<title>成都宅时光</title> 
+<title>关注的人</title> 
 
 <!-- 线上 -->
 <base target="_blank" href="http://static.zgame.fun/web/">

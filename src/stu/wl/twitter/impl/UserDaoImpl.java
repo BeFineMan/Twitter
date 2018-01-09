@@ -41,11 +41,11 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
 		Session session = super.getSession();
 		Transaction tx = session.beginTransaction();
 		
-		List<User> users = user.getFocusUser();
+		//List<User> users = user.getFocusUser();
 		
 		tx.commit();
 		session.close();
-		return users;
+		return null;
 	}
 	
 }
