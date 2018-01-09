@@ -11,6 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="Content+-Type" content="text/html; charset=UTF-8">
 	<title>乌云后台登录</title>
 	<link href="/Twitter/css/userhome.css" rel="stylesheet" type="text/css" media="all">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="keywords" content="后台登录">
 	<script src="/Twitter/js/jquery-3.2.1.min.js" type="text/javascript"></script>
@@ -32,6 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<td>
 					<!-- 发表动态 -->	
+
 					<form id="publish_dynamic_form" action="/Twitter/user/publishDynamic.log" method="post"  enctype="multipart/form-data">	
 						<div id="publish_dynamic_background" class="all_table_border">
 							<!-- 这个DIV是动态上面的文字 -->	

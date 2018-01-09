@@ -68,6 +68,7 @@ public class UserHomeController extends BaseController{
 			FileItem item = iter.next();
 			String fieldName = item.getFieldName();		//得到表单控件的名称
 			System.out.println("表单控件名称"+fieldName);
+
 			if(!item.isFormField()){		//如果是表单文件
 				String fileName = item.getName();
 				String contentType = item.getContentType();
@@ -81,6 +82,7 @@ public class UserHomeController extends BaseController{
 		return mav;
 	}
 	
+
 	//发表动态
 	@RequestMapping(value = "/publishDynamic", method = RequestMethod.POST)
 	public ModelAndView publishDynamic(HttpServletRequest request,HttpServletResponse response,HttpSession session){
@@ -89,6 +91,7 @@ public class UserHomeController extends BaseController{
 		
 		DiskFileItemFactory factory = new DiskFileItemFactory();	//创建磁盘工厂
 		ServletFileUpload upload = new ServletFileUpload(factory);		//创建处理工具
+
 		List<FileItem> items = null;
 		Dynamic dynamic = new Dynamic();
 		InputStream in = null;
@@ -104,10 +107,12 @@ public class UserHomeController extends BaseController{
 		
 		while(iter.hasNext()){
 			FileItem item = iter.next();
+
 			
 			if(!item.isFormField()){		//如果是文件
 				System.out.println("文件格式:"+item.getContentType()+"sad");
 				String fileName = item.getName();
+	
 				System.out.println("fileName:"+fileName+",--"+item.getFieldName());
 				int point = fileName.lastIndexOf(".");
 				String imageFormat = fileName.substring(point+1);
@@ -133,10 +138,12 @@ public class UserHomeController extends BaseController{
 					return mav;
 				}
 			}else{
+
 				String content = request.getParameter("content");
 				dynamic.setContent(content);
 			}
 		}
+
 		dynamic.setUser(super.getSessionUser(request));		
 		dynamic.setLike_number(0);
 		dynamicService.publishDynamic(dynamic, in); 
