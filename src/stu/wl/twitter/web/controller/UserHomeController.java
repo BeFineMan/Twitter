@@ -45,10 +45,19 @@ public class UserHomeController extends BaseController{
 		mav = new ModelAndView();
 		mav.setViewName("User/userhome");
 		User user = super.getSessionUser(request);
-		request.setAttribute("dynamics",dynamicDao.getDynamicsByUserByfocus(user));
+		request.setAttribute("dynamics",dynamicDao.getDynamicsByUserAndFocus(user));
 		return mav;
 	}
 
+	@RequestMapping("/focusDynamics")
+	public ModelAndView enterUserHomeAndGetFocusDynamics(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		mav = new ModelAndView();
+		mav.setViewName("User/userhome");
+		User user = super.getSessionUser(request);
+		request.setAttribute("dynamics",dynamicDao.getDynamicsByUserByfocus(user));
+		return mav;
+	}
+	
 	//上传头像
 	@RequestMapping("/uploadIcon")
 	public ModelAndView uploadIcon(HttpServletRequest request,HttpServletResponse response,HttpSession session){
