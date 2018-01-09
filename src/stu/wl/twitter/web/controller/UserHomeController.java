@@ -112,14 +112,11 @@ public class UserHomeController extends BaseController{
 				System.out.println("文件格式:"+item.getContentType()+"sad");
 				String fileName = item.getName();
 	
-				System.out.println("fileName:"+fileName+",--"+item.getFieldName());
-				
 				int point = fileName.lastIndexOf(".");
 				if(point >= 0){
 					imageFormat = fileName.substring(point);
 				}
 				
-				System.out.println("真-文件格式:"+imageFormat);
 				
 				if(!(".png".equals(imageFormat)||".jpg".equals(imageFormat) || ".gif".equals(imageFormat))){	//上传的不是图片
 					request.getSession().setAttribute("imageFomatError", "上传的格式不正确，请上传图片");
@@ -148,7 +145,6 @@ public class UserHomeController extends BaseController{
 		dynamic.setUser(super.getSessionUser(request));		
 		dynamic.setLike_number(0);
 		dynamicService.publishDynamic(dynamic, in); 
-		System.out.println("我跳转");
 		return mav;
 	}
 	

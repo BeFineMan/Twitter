@@ -136,7 +136,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div id="dynamic_bottom_content_text" style="word-wrap:break-word; word-break:break-all;">
 									${dyns.content}
 								</div>
-								<div id="dynamic_bottom_content_imageOrVideo">图片或视频</div>
+								<div id="dynamic_bottom_content_imageOrVideo">
+									<img id="abcdefg"class="userImage" src="/twitter/Twitter/dynamicImage/oooooo2/20180109225606182990.png${dyns.path}" width="500" height="281">${dyns.path}</img>
+								</div>
 							</div>
 						</div>
 					</td>
@@ -184,7 +186,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		form.submit();
 	}
 	changeDynamicText();
-	
+	var str = document.getElementById("abcdefg").value;
+	console.log(str+"大苏打撒");
 </script>
 </html>
 

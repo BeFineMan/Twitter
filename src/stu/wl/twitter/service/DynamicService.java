@@ -20,18 +20,19 @@ public class DynamicService {
 	@Autowired
 	private DynamicDao dynamicDao;
 
+	//发表动态
 	public boolean publishDynamic(Dynamic dynamic,InputStream in){
 		dynamic.setDeliver_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+		//文件名:xxxxx.png或xxx.jpg
 		StringBuffer fileName = new StringBuffer(TwitterUtil.getSystemTime()+dynamic.getPath());
-		System.out.println("文件名字："+fileName);
 		
 		if(in != null){
 			//获取类的路径
 			StringBuffer realPath = new StringBuffer(DynamicService.class.getResource("/").getPath());	
-			System.out.println("------真实路径:"+realPath);
 			
 			//文件上传的路径
 			StringBuffer uploadPath  = new StringBuffer(realPath.substring(0, realPath.indexOf("WEB-INF/classes/")));
+			
 			//图片保存的路径
 			StringBuffer imagePath = new StringBuffer("/Twitter/");
 			
@@ -39,22 +40,14 @@ public class DynamicService {
 			StringBuffer filedir = new StringBuffer();
 			filedir.append(imagePath.append("dynamicImage/").append(dynamic.getUser().getUserid()).append("/"));
 			
-			System.out.println("filedir的路径:"+filedir.toString()+"创建文件夹的路径："+uploadPath);
 			
 			imagePath.append("dynamicImage/").append(dynamic.getUser().getUserid()).append("/"+fileName);
 			filedir = uploadPath.append("dynamicImage/").append(dynamic.getUser().getUserid()).append("/");
-			System.out.println("真-文件上传路径："+filedir);
 			
 			File file = new File(filedir.toString().replaceAll("/", "\\\\"));
 			file.mkdir();
 			uploadPath.append(fileName);
 			
-			System.out.println("uploadPath:"+uploadPath.toString()+"，文件路径："+uploadPath);
-			/*imagePath.append("dynamicImage//").append(dynamic.getUser().getUserid()).append("//"+fileName);
-			uploadPath.append("dynamicImage//").append(dynamic.getUser().getUserid()).append("//"+fileName);*/
-			
-			
-			System.out.println("--------文件路径:"+uploadPath.toString().replaceAll("/", "\\\\")+",-------图片路径:"+imagePath.toString());
 			if(this.saveFile(uploadPath.toString(),in)==false){
 				System.out.println("文件保存失败");
 				return false;
@@ -66,6 +59,7 @@ public class DynamicService {
 		return true;
 	}
 	
+	//保存文件
 	public boolean saveFile(String path,InputStream in){
 		System.out.println("最终路径："+path);
 		File file = new File(path);
