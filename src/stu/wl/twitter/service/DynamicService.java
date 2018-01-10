@@ -41,7 +41,7 @@ public class DynamicService {
 			filedir.append(imagePath.append("dynamicImage/").append(dynamic.getUser().getUserid()).append("/"));
 			
 			
-			imagePath.append("dynamicImage/").append(dynamic.getUser().getUserid()).append("/"+fileName);
+			imagePath.append(fileName);
 			filedir = uploadPath.append("dynamicImage/").append(dynamic.getUser().getUserid()).append("/");
 			
 			File file = new File(filedir.toString().replaceAll("/", "\\\\"));

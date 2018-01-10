@@ -139,8 +139,7 @@ request.setCharacterEncoding("UTF-8");
 									${dyns.content}
 								</div>
 								<div id="dynamic_bottom_content_imageOrVideo">
-									
-									<img class="userImage" src="/twitter/Twitter/dynamicImage/oooooo2/20180109225606182990.png${dyns.path}" width="500" height="281">
+									<img class="userImage" src="/twitter${dyns.path}" width="500" height="281">
 								</div>
 							</div>
 						</div>
@@ -159,7 +158,7 @@ request.setCharacterEncoding("UTF-8");
 		<input type="submit" name="提交" value="提交" >
 	</form>
 </div>
-<div onclick="test();">测试点击我11</div>.
+<div onclick="test();">测试点击我1123qweqwq1</div>.
 
 
 
