@@ -4,7 +4,9 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<% 
+request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 					 				</a>
 					 				<!-- 上传图片 -->
-					 				<input id="file_image" type="file" name="path">
+					 				<input id="file_image" type="file" name="path" formenctype="multipart/form-data">
 						 			<div class="publish_dynamic_content_bottom_left_class">
 										<div class="publish_dynamic_content_bottom_left_face_class">
 											<img src="/Twitter/userhome_image/mobileslideshow.png" width="26" height="26">
@@ -108,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<th>3</th>
 								</tr>
 								<tr>
-									<th class="user_info_bottom_font"><a href="/Twitter/focusList.jsp">关注</a></th>
+									<th class="user_info_bottom_font"><a href="/Twitter/user/getFocus.log">关注</a></th>
 									<th class="user_info_bottom_font">粉丝</th>
 									<th class="user_info_bottom_font">微博</th>
 								</tr>
@@ -137,7 +139,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									${dyns.content}
 								</div>
 								<div id="dynamic_bottom_content_imageOrVideo">
-									<img id="abcdefg"class="userImage" src="/twitter/Twitter/dynamicImage/oooooo2/20180109225606182990.png${dyns.path}" width="500" height="281">${dyns.path}</img>
+									
+									<img class="userImage" src="/twitter/Twitter/dynamicImage/oooooo2/20180109225606182990.png${dyns.path}" width="500" height="281">
 								</div>
 							</div>
 						</div>

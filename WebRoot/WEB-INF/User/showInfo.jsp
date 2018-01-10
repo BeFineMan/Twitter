@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				<div class="login-ic">
 					<i></i>
-					<input type="text" value="${sessionScope.USER_CONTEXT.baseInfo.birthday}" id="birthday" name="birthday" disabled onfocus="changeFlag();this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;生 日&#39;;}">
+					<input type="date" value="${sessionScope.USER_CONTEXT.baseInfo.birthday}" id="birthday" name="birthday" disabled onfocus="changeFlag();this.value = &#39;&#39;;" onblur="if (this.value == &#39;&#39;) {this.value = &#39;生 日&#39;;}">
 					<div class="clear"> </div>
 					<div class=".divTab">生日</div>
 				</div>
@@ -86,10 +86,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var inputs = document.getElementsByTagName("input");	//获得所有的input标签
 		var button = document.getElementById("button_bianji");
 		var sexError = "<%=session.getAttribute("sexError")%>";
+		var errorDate = "<%=session.getAttribute("errorDate")%>"; 
 		<%session.removeAttribute("sexError");%>
+		<%session.removeAttribute("errorDate");%>
 		if(!(sexError == null || sexError == "null")){
 			clickbj();
 			alert(sexError);
+		}
+		if(!(errorDate == null || errorDate =="null")){
+			clickbj();
+			alert(errorDate);
 		}
 	
 		//筛选出input里属性名为disbled的属性，将它删除。即可恢复成可编辑状态

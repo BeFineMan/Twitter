@@ -56,8 +56,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="list">
         <ul>
 
-        <c:forEach items="${sessionScope.USER_CONTEXT.focusUser }" var="item">
-        	<li><a title="${ item.baseInfo.nickName } " href="http://www.zgame.fun/detail.html?id=101"><span>${item.userName }</span><em></em><p class="lside"><span class="time textBlack">已关注</span><span class="title textBlack">${item.userName} </span><span class="comment">${item.baseInfo.summary} </span></p></a></li>
+        <c:forEach items="${requestScope.focus}" var="item"> 
+        	<li>
+        		<a title="${item.baseInfo.nickName}" href="http://www.zgame.fun/detail.html?id=101">
+        			<span>${item.baseInfo.nickName}</span>
+        			<em></em>
+        			<p class="lside">
+        				<span class="time textBlack">已关注</span>
+        				<span class="title textBlack"></span>
+        				<span class="comment">简介: ${item.baseInfo.simpleinfo}</span>
+        			</p>
+        		</a>
+        	</li>
         
         </c:forEach>
         </ul>
@@ -80,11 +90,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="logo">
             <img src="www/pc/images/logo.png" alt="">
         </div>  
-        <p>本游戏适合12岁以上的玩家进入。<br>
-        积极健康的游戏心态是健康游戏的开端，请您合理控制游戏时间，避免沉溺游戏影响生活，注意自我保护，防范网络陷阱。<br>
-        成都宅时光网络科技有限公司 联系方式 : bd@zgame.fun<br>
-         ©2017 宅时光  蜀ICP备17041446号
-        </p> 
         <div class="gaba"><img src="www/pc/images/gaba.png" alt=""><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51019002001212">川公网安备 51019002001212号</a>
         </div>
     </div>

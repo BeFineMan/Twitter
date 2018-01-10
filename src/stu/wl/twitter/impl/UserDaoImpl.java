@@ -1,5 +1,6 @@
 package stu.wl.twitter.impl;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -7,6 +8,8 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import stu.wl.twitter.dao.UserDao;
+import stu.wl.twitter.domain.FansUser;
+import stu.wl.twitter.domain.FocusUser;
 import stu.wl.twitter.domain.User;
 
 @Repository("userDao")
@@ -41,11 +44,21 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
 		Session session = super.getSession();
 		Transaction tx = session.beginTransaction();
 		
-		//List<User> users = user.getFocusUser();
+		//获取关注的人，说明 我是粉丝
+		FansUser fansUser = session.get(FansUser.class, user.getUserid());
+		List<FocusUser> focusUsers = fansUser.getFocusUser();
+		List<User> users = new LinkedList<User>();
+		for(FocusUser focusUser : focusUsers){
+			users.add(focusUser.getUser());
+		}
+		
+		for(User u : users){
+			System.out.println("用户："+u);
+		}
 		
 		tx.commit();
 		session.close();
-		return null;
+		return users;
 	}
 	
 }

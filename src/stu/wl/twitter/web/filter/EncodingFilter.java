@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
  * */
 public class EncodingFilter implements Filter{
 	private String encoding;
-	private static int i=0;
 
 	@Override
 	public void destroy() {
@@ -28,6 +27,7 @@ public class EncodingFilter implements Filter{
 			throws IOException, ServletException {
 		request.setCharacterEncoding(encoding);
 		response.setCharacterEncoding(encoding);
+		System.out.println("过滤器过滤");
 		chain.doFilter(request, response);
 	}
 

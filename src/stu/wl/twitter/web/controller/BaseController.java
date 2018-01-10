@@ -19,4 +19,8 @@ public class BaseController {
 	protected String getContentType(HttpServletRequest request){
 		return null; 
 	}
+	protected void updateSessionUser(HttpServletRequest request,User user){
+		request.getSession().removeAttribute(CommonConstant.USER_CONTEXT);
+		this.setSessionUser(request, user);
+	}
 }

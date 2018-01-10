@@ -50,10 +50,13 @@ body{
   <div id="left_nav">
   	<ul>
   		<li>
-  			<a href="">首页</a>
+  			<a href="/Twitter/user/home.log">首页</a>
   		</li>
   		<li>
-  			<a href="">我的收藏</a>
+  			<a href="/Twitter/user/home.log">我的收藏</a>
+  		</li>
+  		<li>
+  			<a href="">推荐关注的人</a>
   		</li>
   	</ul>
   </div>

@@ -21,7 +21,7 @@ public class DynamicDaoImpl extends BaseDaoImpl<Dynamic> implements DynamicDao{
 		Session session  = super.getSession();
 		Transaction tx = session.beginTransaction();
 		
-		List list = (List) session.createNativeQuery("SELECT * FROM t_dynamic WHERE user_id = '"+user.getUserid()+"'").getResultList();
+		List list = (List) session.createNativeQuery("SELECT * FROM t_dynamic WHERE user_id = '"+user.getUserid()+"' ORDER BY deliver_time DESC").getResultList();
 		List<Dynamic> dynamics = this.getDynamicList(list,session);
 		tx.commit();
 		session.close();
@@ -30,59 +30,14 @@ public class DynamicDaoImpl extends BaseDaoImpl<Dynamic> implements DynamicDao{
 	
 	//获取用户和关注的人的动态
 	public List<Dynamic> getDynamicsByUserAndFocus(User user){
-		List<Dynamic> usersDynamics = this.getDynamicsByUser(user);
-		List<Dynamic> focusDynamics = this.getDynamicsByUserByfocus(user);
-		for(Dynamic dynamic : usersDynamics){
-			focusDynamics.add(dynamic);
-		}
-		return focusDynamics;
-	}
-	
-	//返回动态集合
-	public List<Dynamic> getDynamicList(List list,Session session){
-		List<Dynamic> dynamics = new LinkedList<Dynamic>();
-		Dynamic dynamic = null;
-		for(int i = 0; i < list.size(); i++){
-			Object[] obj = (Object[]) list.get(i);
-			String dynamicId = null;
-			String content = null;
-			Timestamp deliverTime =	null;
-			Object like_number = 0;	
-			String path = null;
-			String topic = null;
-			String userid = null ; 
-			for(int j = 0; j < obj.length;j++){
-				dynamicId = (String) obj[0];
-				content = (String) obj[1];
-				deliverTime = Timestamp.valueOf((String) obj[2]);
-				like_number = obj[3];
-				path = (String) obj[4];
-				topic = (String) obj[5];
-				userid = (String) obj[6];
-			}
-			
-			//将都取出来的每行数据存储进dynamic对象集合里
-			{
-				dynamic = new Dynamic();
-				dynamic.setUser(session.get(User.class, userid));
-				dynamic.setContent(content);
-				//将日期格式化转换
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
-				dynamic.setDeliver_time(sdf.format(deliverTime));
-				
-				//将点赞转换
-				int number = 0;
-				if(like_number == null){		//如果传来的是字符串
-					dynamic.setLike_number(number);
-				}else{
-					dynamic.setLike_number((int)like_number);
-				}
-				
-				dynamic.setPath(path);
-				dynamic.setTopic(topic);
-			}
-			dynamics.add(dynamic);
-		}
+		Session session  = super.getSession();
+		Transaction tx = session.beginTransaction();
+		
+		List list =  (List) session.createNativeQuery("SELECT * FROM t_dynamic WHERE user_id = any(SELECT focus_id FROM T_FOCUSANDFANS WHERE fans_id = '"+user.getUserid()+"') OR user_id = '"+user.getUserid()+"' ORDER BY deliver_time DESC").getResultList();
+		List<Dynamic> dynamics = this.getDynamicList(list, session);
+		
+		tx.commit();
+		session.close();
 		return dynamics;
 	}
 	
@@ -92,58 +47,61 @@ public class DynamicDaoImpl extends BaseDaoImpl<Dynamic> implements DynamicDao{
 		Transaction tx = session.beginTransaction();
 		
 		List list =  (List) session.createNativeQuery("SELECT * FROM t_dynamic WHERE user_id = any(SELECT focus_id FROM T_FOCUSANDFANS WHERE fans_id = '"+user.getUserid()+"') ORDER BY deliver_time DESC").getResultList();
-		List<Dynamic> dynamics = new LinkedList<Dynamic>();
+		List<Dynamic> dynamics = this.getDynamicList(list, session);
 		
-		Dynamic dynamic = null;
-		for(int i = 0; i < list.size(); i++){
-			Object[] obj = (Object[]) list.get(i);
-			
-			String dynamicId = null;
-			String content = null;
-			Timestamp deliverTime =	null;
-			String like_number = null;	
-			String path = null;
-			String topic = null;
-			String userid = null;
-			for(int j = 0; j < obj.length;j++){
-				dynamicId = (String) obj[0];
-				content = (String) obj[1];
-				deliverTime = (Timestamp) obj[2];
-				like_number =  (String) obj[3];
-				path = (String) obj[4];
-				topic = (String) obj[5];
-				userid = (String) obj[6];
-				System.out.println(userid);
-			}
-			
-			//将都取出来的每行数据存储进dynamic对象集合里
-			{
-				dynamic = new Dynamic();
-				dynamic.setUser(session.get(User.class, userid));
-				dynamic.setContent(content);
-				//将日期格式化转换
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
-				dynamic.setDeliver_time(sdf.format(deliverTime));
-				
-				//将点赞转换
-				int number;
-				if(like_number == null){
-					number = 0;
-				}else{
-					number = Integer.parseInt(like_number);
-				}
-				dynamic.setLike_number(number);
-				dynamic.setPath(path);
-				dynamic.setTopic(topic);
-			}
-			dynamics.add(dynamic);
-		}
 		tx.commit();
 		session.close();
 		
 		return dynamics;
 	}
 	
+	//返回动态集合
+		public List<Dynamic> getDynamicList(List list,Session session){
+			List<Dynamic> dynamics = new LinkedList<Dynamic>();
+			Dynamic dynamic = null;
+			for(int i = 0; i < list.size(); i++){
+				Object[] obj = (Object[]) list.get(i);
+				String content = null;
+				Timestamp deliverTime =	null;
+				Object like_number = 0;	
+				String path = null;
+				String topic = null;
+				String userid = null ; 
+				for(int j = 0; j < obj.length;j++){
+					content = (String) obj[1];
+					deliverTime = (Timestamp) obj[2];
+					like_number = obj[3];
+					path = (String) obj[4];
+					topic = (String) obj[5];
+					userid = (String) obj[6];
+				}
+				
+				//将都取出来的每行数据存储进dynamic对象集合里
+				{
+					dynamic = new Dynamic();
+					dynamic.setUser(session.get(User.class, userid));
+					dynamic.setContent(content);
+					//将日期格式化转换
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+					dynamic.setDeliver_time(sdf.format(deliverTime));
+					
+					//将点赞转换
+					int number = 0;
+					if(like_number == null){		//如果传来的是字符串
+						dynamic.setLike_number(number);
+					}else{
+						dynamic.setLike_number((int)like_number);
+					}
+					
+					dynamic.setPath(path);
+					dynamic.setTopic(topic);
+				}
+				dynamics.add(dynamic);
+				System.out.println("a:"+dynamic);
+
+			}
+			return dynamics;
+		}
 	
 	
 }

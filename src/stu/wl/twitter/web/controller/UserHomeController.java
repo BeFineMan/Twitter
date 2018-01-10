@@ -119,42 +119,32 @@ public class UserHomeController extends BaseController{
 			FileItem item = iter.next();
 
 			if(!item.isFormField()){		//如果是文件
-				System.out.println("文件格式:"+item.getContentType()+"sad");
 				String fileName = item.getName();
-	
-				int point = fileName.lastIndexOf(".");
-				if(point >= 0){
-					imageFormat = fileName.substring(point);
+				if(!(fileName == null || "".equals(fileName))){		
+					int point = fileName.lastIndexOf(".");
+					if(point >= 0){
+						imageFormat = fileName.substring(point);
+					}
+					
+					if(!(".png".equals(imageFormat)||".jpg".equals(imageFormat) || ".gif".equals(imageFormat))){	//上传的不是图片
+						request.getSession().setAttribute("imageFomatError", "上传的格式不正确，请上传图片");
+						return mav;
+					}
+					if(item.getSize() > 3145728){		//文件大小超过3M
+						request.getSession().setAttribute("imageSizeError", "图片的大小不能超过3M");
+						return mav;
+					}
+					try {
+						in = item.getInputStream();
+					} catch (IOException e) {
+						System.out.println("没有获得输入流");
+						e.printStackTrace();
+						return mav;
+					}
 				}
 				
-				
-				if(!(".png".equals(imageFormat)||".jpg".equals(imageFormat) || ".gif".equals(imageFormat))){	//上传的不是图片
-					request.getSession().setAttribute("imageFomatError", "上传的格式不正确，请上传图片");
-					System.out.println("上传的格式不正确，请上传图片");
-					dynamic.setContent(content);
-					dynamic.setPath(imageFormat);
-					dynamic.setUser(super.getSessionUser(request));		
-					dynamic.setLike_number(0);
-					dynamicService.publishDynamic(dynamic, in); 
-					return mav;
-				}
-				if(item.getSize() > 3145728){		//文件大小超过3M
-					request.getSession().setAttribute("imageSizeError", "图片的大小不能超过3M");
-					System.out.println("图片的大小不能超过3M");
-					return mav;
-				}
-				try {
-					in = item.getInputStream();
-				} catch (IOException e) {
-					System.out.println("没有获得输入流");
-					e.printStackTrace();
-					return mav;
-				}
 			}else{
-				String name = item.getFieldName();
-				String value = item.getString("UTF-8");
-				content = new String(value.getBytes("iso8859-1"),"UTF-8");
-				//content = request.getParameter("content");
+				content = item.getString("UTF-8");
 			}
 		}
 		
@@ -169,17 +159,22 @@ public class UserHomeController extends BaseController{
 	/*获取关注的人*/
 	@RequestMapping("/getFocus")
 	public ModelAndView getFoucs(HttpServletRequest request,HttpServletResponse response,HttpSession session,WebRequest web){
-		User user = super.getSessionUser(request);
-		List<User> list = userdao.getFocusByUser(user);
 		mav = new ModelAndView();
+		mav.setViewName("User/focusList");
 
-		mav.setViewName("User/focus");
-		request.setAttribute("focus", list);
+		User user = super.getSessionUser(request);
+		List<User> users = userdao.getFocusByUser(user);
+		
+		for(User u : users){
+			System.out.println("用户-------："+u);
+		}
+		
+		request.setAttribute("focus", users);
 		return mav;
 	}
 	
 	
-	/*获取关注的人*/
+	/*获取关注的人的动态*/
 	@RequestMapping("/getFocusDynamic")
 	public ModelAndView getFocusDynamic(HttpServletRequest request,HttpServletResponse response,HttpSession session,WebRequest web){
 		String id = request.getParameter("id");
