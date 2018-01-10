@@ -52,10 +52,6 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
 			users.add(focusUser.getUser());
 		}
 		
-		for(User u : users){
-			System.out.println("用户："+u);
-		}
-		
 		tx.commit();
 		session.close();
 		return users;
