@@ -140,7 +140,7 @@ request.setCharacterEncoding("UTF-8");
 								</div>
 								<div id="dynamic_bottom_content_imageOrVideo">
 									
-									<img class="userImage" src="/twitter/Twitter/dynamicImage/oooooo2/20180109225606182990.png${dyns.path}" width="500" height="281">
+									<img class="userImage" src="<%="123" %>" width="500" height="281">
 								</div>
 							</div>
 						</div>

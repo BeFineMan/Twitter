@@ -47,7 +47,8 @@ public class DynamicService {
 			File file = new File(filedir.toString().replaceAll("/", "\\\\"));
 			file.mkdir();
 			uploadPath.append(fileName);
-			
+			System.out.println(uploadPath);
+			System.out.println(filedir.toString().replaceAll("/", "\\\\"));
 			if(this.saveFile(uploadPath.toString(),in)==false){
 				System.out.println("文件保存失败");
 				return false;

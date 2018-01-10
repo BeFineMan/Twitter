@@ -69,7 +69,7 @@ public class DynamicDaoImpl extends BaseDaoImpl<Dynamic> implements DynamicDao{
 				String userid = null ; 
 				for(int j = 0; j < obj.length;j++){
 					content = (String) obj[1];
-					deliverTime = (Timestamp) obj[2];
+					deliverTime =(Timestamp) obj[2];
 					like_number = obj[3];
 					path = (String) obj[4];
 					topic = (String) obj[5];

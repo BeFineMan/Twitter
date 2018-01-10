@@ -23,8 +23,11 @@ public class LoginController extends BaseController{
 	@RequestMapping("/doLogin")
 	public ModelAndView login(HttpServletRequest request, User user){
 		
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		System.out.println(username+password);
 		ModelAndView mav = new ModelAndView();
-
+		
 		//如果用户已经登陆过，则直接跳转
 		Object sessionUser = request.getSession().getAttribute("USER_CONTEXT");
 		if(!(sessionUser == null || "".equals(sessionUser))){
