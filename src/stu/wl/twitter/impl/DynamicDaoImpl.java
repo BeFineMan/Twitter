@@ -44,26 +44,27 @@ public class DynamicDaoImpl extends BaseDaoImpl<Dynamic> implements DynamicDao{
 		Dynamic dynamic = null;
 		for(int i = 0; i < list.size(); i++){
 			Object[] obj = (Object[]) list.get(i);
-			
 			String dynamicId = null;
 			String content = null;
 			Timestamp deliverTime =	null;
 			Object like_number = 0;	
 			String path = null;
 			String topic = null;
+			String userid = null ; 
 			for(int j = 0; j < obj.length;j++){
 				dynamicId = (String) obj[0];
 				content = (String) obj[1];
-				deliverTime = (Timestamp) obj[2];
+				deliverTime = Timestamp.valueOf((String) obj[2]);
 				like_number = obj[3];
 				path = (String) obj[4];
 				topic = (String) obj[5];
+				userid = (String) obj[6];
 			}
 			
 			//将都取出来的每行数据存储进dynamic对象集合里
 			{
 				dynamic = new Dynamic();
-				dynamic.setUser(session.get(User.class, dynamicId));
+				dynamic.setUser(session.get(User.class, userid));
 				dynamic.setContent(content);
 				//将日期格式化转换
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
@@ -103,6 +104,7 @@ public class DynamicDaoImpl extends BaseDaoImpl<Dynamic> implements DynamicDao{
 			String like_number = null;	
 			String path = null;
 			String topic = null;
+			String userid = null;
 			for(int j = 0; j < obj.length;j++){
 				dynamicId = (String) obj[0];
 				content = (String) obj[1];
@@ -110,12 +112,14 @@ public class DynamicDaoImpl extends BaseDaoImpl<Dynamic> implements DynamicDao{
 				like_number =  (String) obj[3];
 				path = (String) obj[4];
 				topic = (String) obj[5];
+				userid = (String) obj[6];
+				System.out.println(userid);
 			}
 			
 			//将都取出来的每行数据存储进dynamic对象集合里
 			{
 				dynamic = new Dynamic();
-				dynamic.setUser(session.get(User.class, dynamicId));
+				dynamic.setUser(session.get(User.class, userid));
 				dynamic.setContent(content);
 				//将日期格式化转换
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
